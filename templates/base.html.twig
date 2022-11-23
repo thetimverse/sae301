@@ -7,13 +7,20 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <!--=============== REMIXICONS ===============-->
+            <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script href="{{ asset('js/main.js') }}"></script>
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    {% include "menu.html.twig" %}
+        {% block body %}
+
+        {% endblock %}
     </body>
 </html>

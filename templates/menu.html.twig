@@ -1,0 +1,43 @@
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="accueil" class="nav__logo">Toulouse<span>Culture</span></a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="accueil" class="nav__link active-link">Accueil</a>
+                </li>
+                <li class="nav__item">
+                    <a href="manifestations" class="nav__link">Manifestations</a>
+                </li>
+                <li class="nav__item">
+                    <a href="lieux" class="nav__link">Lieux</a>
+                </li>
+                <li class="nav__item">
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a href="admin" class="nav__link">Administration</a>
+                    {% endif %}
+                </li>
+                <li class="nav__item">
+                    {% if app.user %}
+                    <a href="logout" class="nav__link">Déconnexion</a>
+                </li>
+                <li class="nav__item">
+                    {% else %}
+                    <a href="login" class="nav__link">Connexion</a>
+                </li>
+                <li class="nav__item">
+                    <a href="register" class="nav__link">S'inscrire</a>
+                    {% endif %}
+                </li>
+            </ul>
+            <div class="nav__close" id="nav-close">
+                <i class="ri-close-line"></i>
+            </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line"></i>
+        </div>
+    </nav>
+</header>
