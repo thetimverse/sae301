@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux Culturels{% endblock %}
+
+{% block body %}
+        <div>
+            <h3>{{ lieu.Nom }}</h3>
+            <p>{{ lieu.Adresse }}</p>
+            <p>{{ lieu.Ville }}</p>
+            <p>{{ lieu.Cp }}</p>
+            <p>{{ lieu.Capacite }}</p>
+            <img src=" {{ asset ('img/' ~lieu.Image ) }}" alt=""><br><br>
+        </div>
+        <div>
+            <h3>Évènements</h3>
+            {% if events %}
+                {% for event in events %}
+                <h3>{{ event.Titre }}</h3>
+                <p>{{ event.Genre }}</p>
+                <p>{{ event.Horaire}}</p>
+                <p>{{ event.Date }}</p>
+                <img src=" {{ asset ('img/' ~event.Affiche ) }}" alt=""><br><br>
+                {% endfor %}
+            {% endif %}
+        </div>
+{% endblock %}
