@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Évènements{% endblock %}
+
+{% block body %}
+        <div>
+            <h3>{{ manif.Titre }}</h3>
+            <p>{{ manif.Description }}</p>
+            <p>{{ manif.Casting }}</p>
+            <p>{{ manif.Genre }}</p>
+            <p>{{ manif.Prix }}€</p>
+            <p>{{ manif.Horaire}}</p>
+            <p>{{ manif.Date }}</p>
+            <p>{{ manif.Lieux.Nom }}</p>
+            <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt=""><br><br>
+        </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% for manif in manifs %}
+<a href="{{ path('manifestation_detail', {'manifestation':manif.id}) }}">
+    <h3>{{ manif.Titre }}</h3>
+    <p>{{ manif.Genre }}</p>
+    <p>{{ manif.Horaire}}</p>
+    <p>{{ manif.Date }}</p>
+    <p>{{ manif.Lieux.Nom }}</p>
+    <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt=""><br><br>
+</a>
+{% endfor %}

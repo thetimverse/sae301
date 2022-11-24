@@ -4,29 +4,32 @@
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                 <li class="nav__item">
-                    <a href="accueil" class="nav__link active-link">Accueil</a>
+                    <a href="{{ path('app_accueil')}}" class="nav__link active-link">Accueil</a>
                 </li>
                 <li class="nav__item">
-                    <a href="manifestations" class="nav__link">Manifestations</a>
+                    <a href="{{ path('app_manifestations')}}" class="nav__link">Évènements</a>
                 </li>
                 <li class="nav__item">
-                    <a href="lieux" class="nav__link">Lieux</a>
+                    <a href="{{ path('app_lieux')}}" class="nav__link">Lieux</a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_recherche')}}" class="nav__link">Recherche</a>
                 </li>
                 <li class="nav__item">
                     {% if is_granted("ROLE_ADMIN") %}
-                    <a href="admin" class="nav__link">Administration</a>
+                    {# <a href="{{ path('app_admin')}}" class="nav__link">Administration</a> #}
                     {% endif %}
                 </li>
                 <li class="nav__item">
                     {% if app.user %}
-                    <a href="logout" class="nav__link">Déconnexion</a>
+                    {# <a href="{{ path('app_logout')}}" class="nav__link">Déconnexion</a> #}
                 </li>
                 <li class="nav__item">
                     {% else %}
-                    <a href="login" class="nav__link">Connexion</a>
+                    {# <a href="{{ path('app_login')}}" class="nav__link">Connexion</a> #}
                 </li>
                 <li class="nav__item">
-                    <a href="register" class="nav__link">S'inscrire</a>
+                    {# <a href="{{ path('app_register')}}" class="nav__link">S'inscrire</a> #}
                     {% endif %}
                 </li>
             </ul>
