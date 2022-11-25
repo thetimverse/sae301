@@ -3,15 +3,51 @@
 {% block title %}Évènements{% endblock %}
 
 {% block body %}
-        <div>
-            <h3>{{ manif.Titre }}</h3>
-            <p>{{ manif.Description }}</p>
-            <p>{{ manif.Casting }}</p>
-            <p>{{ manif.Genre }}</p>
-            <p>{{ manif.Prix }}€</p>
-            <p>{{ manif.Horaire}}</p>
-            <p>{{ manif.Date }}</p>
-            <p>{{ manif.Lieux.Nom }}</p>
-            <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt=""><br><br>
+    <section id="main">
+        <a id="back" href="{{ path('app_manifestations')}}">
+            <div>
+                <i class="material-icons material-symbols-rounded">arrow_circle_left</i>
+                <h4>Retour</h4>
+            </div>
+        </a>
+        <div class="event-detail">
+            <div class="top">
+                <img src="{{ asset ('img/' ~manif.Affiche ) }}" alt="event">
+                <div class="top-right">
+                    <div>
+                        <h2>{{ manif.Date }}</h2>
+                        <h3>{{ manif.Horaire}}</h3>
+                    </div>
+                    <h3>Tarif : {{ manif.Prix }} €</h3>
+                </div>
+            </div>
+            <div class="titre">
+                <div>
+                    <h1>{{ manif.Titre }}</h1>
+                    <h3>{{ manif.Genre }}</h3>
+                </div>
+                <div>
+                    <label for="nb-places"><h4>Nombre de places à réserver</h4></label>
+                    <input type="number" id="nb-places" name="nb-places" min="0" placeholder="0">
+                    <a href="{{ path('app_panier')}}" class="bttn-primary">Réserver</a>
+                </div>
+            </div>
+            <div class="lieu-detail">
+                <div class="adresse">
+                    <i class="material-icons">pin_drop</i>
+                    <div><h3>{{ manif.Lieux.Nom }}</h3><h4>{{ manif.Lieux.Adresse }}<br> {{ manif.Lieux.Ville }} <br>{{ manif.Lieux.Cp }}</h4></div>
+                </div>
+                <a href="{{ path('lieu_detail', {'lieu':lieu.id})}}" class="bttn-secondary">Voir la fiche lieu</a>
+            </div>
+
+            <div class="description">
+                <h3>Description</h3>
+                <p>{{ manif.Description }}</p>
+
+                <h3>Crédit(s)</h3>
+                <p>{{ manif.Casting }}</p>
+            </div>
         </div>
+
+    </section>
 {% endblock %}
