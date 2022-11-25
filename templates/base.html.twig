@@ -8,14 +8,14 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-            <!--=============== REMIXICONS ===============-->
-            <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
             <script href="{{ asset('js/main.js') }}"></script>
-            <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> 
+            <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+            <script src="https://kit.fontawesome.com/8b8e002e2c.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <body>
@@ -23,5 +23,6 @@
         {% block body %}
 
         {% endblock %}
+    {% include "footer.html.twig" %}
     </body>
 </html>

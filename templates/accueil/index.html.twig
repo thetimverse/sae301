@@ -1,20 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Accueil - SAE301{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section id="main">
+        <h1>Agenda</h1>
+        <div id="events">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="event">
+                <div class="zoom">
+                    <div class="image">
+                        <img src={{asset ('img/6.jpg.webp')}} alt="event">
+                    </div>
+                </div>
+                <h2>Conférence musicale</h2>
+                <div><i class="material-icons">schedule</i><h4>6 décembre 2022 - 18h30</h4></div>
+                <div><i class="material-icons">pin_drop</i><h4>Médialudo <br> Blagnac</h4></div>
+                <div class="genre"><h4>Conférence</h4></div>
+            </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/sae301/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/sae301/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <div class="event">
+                <div class="zoom">
+                    <div class="image">
+                        <img src={{asset ('img/17.jpg.webp')}} alt="event">
+                    </div>
+                </div>
+                <h2>Alfred Nakache, le nageur d'Auschwitz</h2>
+                <div><i class="material-icons">schedule</i><h4>16 novembre 2022 - 31 décembre 2022 - 11h</h4></div>
+                <div><i class="material-icons">pin_drop</i><h4>Le Castelet <br> Toulouse</h4></div>
+                <div class="genre"><h4>Exposition</h4></div>
+            </div>
+
+            <div class="event">
+                <div class="zoom">
+                    <div class="image">
+                        <img src={{ asset ('img/30.jpg.webp')}} alt="event">
+                    </div>
+                </div>
+                <h2>La Ruée vers l'or</h2>
+                <div><i class="material-icons">schedule</i><h4>25 novembre 2022 - 20h</h4></div>
+                <div><i class="material-icons">pin_drop</i><h4>Halle aux Grains <br> Toulouse</h4></div>
+                <div class="genre"><h4>Spectacle</h4></div>
+            </div>
+
+        </div>
+        
+        <a href="{{ path('app_manifestations')}}" class="bttn-primary">Voir tous les évènements</a>
+    </section>
 {% endblock %}
