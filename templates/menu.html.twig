@@ -1,5 +1,47 @@
 <header class="header" id="header">
     <nav class="nav container">
+        <a href="{{ path('app_accueil')}}" class="nav__logo"><img src="{{asset ('img/logo.svg')}}" alt="logo"></a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="{{ path('app_accueil')}}" class="nav__link active-link">Accueil</a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_manifestations')}}" class="nav__link">Évènements</a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_lieux')}}" class="nav__link">Lieux culturels</a>
+                </li>
+                <li class="nav__item" style="display:none;">
+                    <a href="{{ path('app_accueil')}}" class="nav__link">Administration</a>
+                </li>
+                <li class="nav__item" style="display:none;">
+                    <a href="{{ path('app_accueil')}}" class="nav__link">Déconnexion</a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_accueil')}}" class="nav__link">Inscription</a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_panier')}}" class="nav__link"><i class="material-icons">shopping_cart</i></a>
+                </li>
+                <li class="nav__item">
+                    <a href="{{ path('app_accueil')}}" class="nav__link"><i class="material-icons">account_circle</i></a>
+                </li>
+            </ul>
+            <div class="nav__close" id="nav-close">
+                <i class="ri-close-line"></i>
+            </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line"></i>
+        </div>
+    </nav>
+</header>
+
+{# <header class="header" id="header">
+    <nav class="nav container">
         <a href="accueil" class="nav__logo">Toulouse<span>Culture</span></a>
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
@@ -18,19 +60,19 @@
                 <li class="nav__item">
                     {% if is_granted("ROLE_ADMIN") %}
                     {# <a href="{{ path('app_admin')}}" class="nav__link">Administration</a> #}
-                    {% endif %}
+                    {# {% endif %}
                 </li>
                 <li class="nav__item">
-                    {% if app.user %}
+                    {% if app.user %} #}
                     {# <a href="{{ path('app_logout')}}" class="nav__link">Déconnexion</a> #}
-                </li>
+                {# </li>
                 <li class="nav__item">
-                    {% else %}
+                    {% else %} #}
                     {# <a href="{{ path('app_login')}}" class="nav__link">Connexion</a> #}
-                </li>
-                <li class="nav__item">
+                {# </li>
+                <li class="nav__item"> #}
                     {# <a href="{{ path('app_register')}}" class="nav__link">S'inscrire</a> #}
-                    {% endif %}
+                    {# {% endif %}
                 </li>
             </ul>
             <div class="nav__close" id="nav-close">
@@ -43,4 +85,4 @@
             <i class="ri-menu-line"></i>
         </div>
     </nav>
-</header>
+</header> #}

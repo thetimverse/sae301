@@ -1,12 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lieux Culturels{% endblock %}
+{% block title %}Lieux Culturels - SAÉ301{% endblock %}
 
 {% block body %}
-    {% for lieu in lieux %}
-    <a href="{{ path('lieu_detail', {'lieu':lieu.id}) }}">
-        <h3>{{ lieu.Nom }}</h3>
-        <img src=" {{ asset ('img/' ~lieu.Image ) }}" alt="">
-    </a>
-    {% endfor %}
+    <section id="main">
+        <h1>Lieux Culturels</h1>
+        <div id="events">
+            {% for lieu in lieux %}
+                <a href="{{ path('lieu_detail', {'lieu':lieu.id}) }}" class="lieu">
+                    <div class="zoom">
+                        <div class="image">
+                            <img src="{{ asset ('img/' ~lieu.Image ) }}" alt="event">
+                        </div>
+                    </div>
+                    <h2>{{ lieu.Nom }}</h2>
+                    <div><i class="material-icons">pin_drop</i><h4>{{ lieu.Ville }}</h4></div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

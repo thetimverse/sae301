@@ -1,16 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Évènements{% endblock %}
+{% block title %}Évènements - SAÉ301{% endblock %}
 
 {% block body %}
-    {% for manif in manifs %}
-    <a href="{{ path('manifestation_detail', {'manifestation':manif.id}) }}">
-        <h3>{{ manif.Titre }}</h3>
-        <p>{{ manif.Genre }}</p>
-        <p>{{ manif.Horaire}}</p>
-        <p>{{ manif.Date }}</p>
-        <p>{{ manif.Lieux.Nom }}</p>
-        <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt=""><br><br>
-    </a>
-    {% endfor %}
+    <section id="search">
+        <h1>Recherche</h1>
+
+        <input type="text" name="completion" id="completion" placeholder="Entrer un mot-clé"></input>
+
+        <div>
+            <!-- <label for="date-debut">Du</label> -->
+            <input type="date" name="date-debut" id="date-debut" value="01/01/2022"></input>
+            <!-- <label for="date-fin">Au</label> -->
+            <input type="date" name="date-fin" id="date-fin" value="01/01/2022"></input>
+        </div>
+        
+        <!-- <div class="select-wrapper"> -->
+        <label>Type d'évènements</label>
+        <select name="genre" placeholder="Type d'évènements" size="1">
+            <option value="">Type d'évènements <i class="material-icons material-icons-rounded">expand_more</i></option>
+            <option value="conf">Conférence</option>
+            <option value="expo">Exposition</option>
+            <option value="spect">Spectacle</option>
+            <option value="festiv">Festival</option>
+        </select>
+        <!-- </div> -->
+
+        <input type="submit" value="Rechercher" id="submit-recherche" class="bttn-primary">
+    </section>
+
+    <section id="main">
+        <h1>Évènements</h1>
+        <div id="events">
+            {% for manif in manifs %}
+                <a href="{{ path('manifestation_detail', {'manifestation':manif.id}) }}" class="event">
+                    <div class="zoom">
+                        <div class="image">
+                            <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt="event">
+                        </div>
+                    </div>
+                    <h2>{{ manif.Titre }}</h2>
+                    <div><i class="material-icons">schedule</i><h4>{{ manif.Date }} - {{ manif.Horaire}}</h4></div>
+                    <div><i class="material-icons">pin_drop</i><h4>{{ manif.Lieux.Nom }} <br> {{ manif.Lieux.Ville }}</h4></div>
+                    <div class="genre"><h4>{{ manif.Genre }}</h4></div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
