@@ -37,9 +37,8 @@
                     <i class="material-icons">pin_drop</i>
                     <div><h3>{{ manif.Lieux.Nom }}</h3><h4>{{ manif.Lieux.Adresse }}<br> {{ manif.Lieux.Ville }} <br>{{ manif.Lieux.Cp }}</h4></div>
                 </div>
-                <a href="{{ path('lieu_detail', {'lieu':lieu.id})}}" class="bttn-secondary">Voir la fiche lieu</a>
+                <a href="{{ path('lieu_detail', {'lieu':manif.lieux.id})}}" class="bttn-secondary">Voir la fiche lieu</a>
             </div>
-
             <div class="description">
                 <h3>Description</h3>
                 <p>{{ manif.Description }}</p>
