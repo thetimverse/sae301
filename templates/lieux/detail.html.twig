@@ -3,6 +3,7 @@
 {% block title %}Lieux Culturels{% endblock %}
 
 {% block body %}
+    <section id="main">
         <div>
             <h3>{{ lieu.Nom }}</h3>
             <p>{{ lieu.Adresse }}</p>
@@ -11,16 +12,23 @@
             <p>{{ lieu.Capacite }}</p>
             <img src=" {{ asset ('img/' ~lieu.Image ) }}" alt=""><br><br>
         </div>
-        <div>
-            <h3>Évènements</h3>
+
+            <h1>Évènements</h1>
+            <div  id="events" class="events_lieu">
             {% if events %}
                 {% for event in events %}
-                <h3>{{ event.Titre }}</h3>
-                <p>{{ event.Genre }}</p>
-                <p>{{ event.Horaire}}</p>
-                <p>{{ event.Date }}</p>
-                <img src=" {{ asset ('img/' ~event.Affiche ) }}" alt=""><br><br>
+                <a href="{{ path('manifestation_detail', {'manifestation':event.id}) }}" class="event">
+                    <div class="zoom">
+                        <div class="image">
+                            <img src=" {{ asset ('img/' ~event.Affiche ) }}" alt="event">
+                        </div>
+                    </div>
+                    <h2>{{ event.Titre }}</h2>
+                    <div><i class="material-icons">schedule</i><h4>{{ event.Date }} - {{ event.Horaire}}</h4></div>
+                    <div class="genre"><h4>{{ event.Genre }}</h4></div>
+                </a>
                 {% endfor %}
             {% endif %}
         </div>
+    </section>
 {% endblock %}
