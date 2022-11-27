@@ -51,10 +51,8 @@ class ManifestationsRepository extends ServiceEntityRepository
     public function rechercheMotCle($motcle)
     {
         return $this->createQueryBuilder('m')
-
-            ->andWhere('m.description LIKE :motcle m.titre :motcle m.casting LIKE :motcle')
-            ->setParameter('motcle', '%'.$motcle.'%')
-            
+            ->andWhere('m.Titre like (:val)')
+            ->setParameter('val', $motcle)
             ->getQuery()
             ->getResult()
         ;
