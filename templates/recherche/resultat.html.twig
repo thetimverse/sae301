@@ -3,7 +3,7 @@
     <h3>{{ manif.Titre }}</h3>
     <p>{{ manif.Genre }}</p>
     <p>{{ manif.Horaire}}</p>
-    <p>{{ manif.Date }}</p>
+    <p>{{ manif.Date|date("d/m/Y") }}</p>
     <p>{{ manif.Lieux.Nom }}</p>
     <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt=""><br><br>
 </a>

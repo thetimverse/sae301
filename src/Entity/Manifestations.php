@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ManifestationsRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,12 +36,12 @@ class Manifestations
     #[ORM\Column(length: 5)]
     private ?string $horaire = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $date = null;
-
     #[ORM\ManyToOne(inversedBy: 'manifestations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Lieux $lieux = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
 
     public function getId(): ?int
     {
@@ -131,18 +132,6 @@ class Manifestations
         return $this;
     }
 
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
-
-    public function setDate(string $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
     public function getLieux(): ?Lieux
     {
         return $this->lieux;
@@ -151,6 +140,23 @@ class Manifestations
     public function setLieux(?Lieux $lieux): self
     {
         $this->lieux = $lieux;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->titre;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $DateTime): self
+    {
+        $this->date = $DateTime;
 
         return $this;
     }

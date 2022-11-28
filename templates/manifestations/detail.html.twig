@@ -15,7 +15,7 @@
                 <img id="image" src="{{ asset ('img/' ~manif.Affiche ) }}" alt="event">
                 <div class="top-right">
                     <div>
-                        <h2 id="date">{{ manif.Date }}</h2>
+                        <h2 id="date">{{ manif.Date|date("d/m/Y") }}</h2>
                         <h3 id="horaire">{{ manif.Horaire}}</h3>
                     </div>
                     <h3>Tarif : <span id="prix">{{ manif.Prix }}</span> €</h3>

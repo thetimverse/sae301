@@ -48,25 +48,46 @@ class ManifestationsRepository extends ServiceEntityRepository
         ;
     }
 
-    public function rechercheMotCle($motcle)
+        /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheMotCle($value): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.Titre like (:val)')
-            ->setParameter('val', $motcle)
+            ->select('DISTINCT m')
+            ->andWhere('m.titre LIKE :mot_cle OR m.description LIKE :mot_cle OR m.casting LIKE :mot_cle')
+            ->setParameter('mot_cle', '%'.$value.'%')
             ->getQuery()
             ->getResult()
         ;
     }
 
-    public function rechercheGenre($categories_array)
+    /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheGenre($value): array
     {
-        return $this->createQueryBuilder('m') 
-        // ->Join('m.Lieux', 'l')
-        ->andWhere('m.Genre LIKE (:val)')
-        ->setParameter('val', $categories_array)
-
-        ->getQuery()
-        ->getResult()
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.genre LIKE :genre')
+            ->setParameter('genre', '%'.$value.'%')
+            ->orderBy('m.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+/**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheDate($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.date LIKE :date')
+            ->setParameter('date', $value)
+            ->getQuery()
+            ->getResult()
         ;
     }
 
