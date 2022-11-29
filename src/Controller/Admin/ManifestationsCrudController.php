@@ -3,13 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Manifestations;
+
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class ManifestationsCrudController extends AbstractCrudController
 {
@@ -40,7 +41,7 @@ class ManifestationsCrudController extends AbstractCrudController
             ImageField::new('affiche')->setBasePath('img/')->setUploadDir('public/img/'),
             NumberField::new('prix'),
             TextField::new('horaire'),
-            DateTimeField::new('date')->setFormat('dd.MM.yyyy'),
+            DateField::new('date')->setFormat('dd.MM.yyyy'),
             AssociationField::new('lieux', 'Lieux')
         ];
     }
