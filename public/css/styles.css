@@ -113,8 +113,7 @@ a {
 }
 
 .nav__menu a:hover, .link-active{
-    color: #DC3E6F;
-    font-weight: 600;
+    color: #DC3E6F !important;
 }
 
 

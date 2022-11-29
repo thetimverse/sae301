@@ -8,56 +8,10 @@
     <section id="main">
         <h1>Agenda</h1>
         <div id="events">
-
-            <div class="event">
-                <div class="zoom">
-                    <div class="image">
-                        <img src={{asset ('img/6.jpg.webp')}} alt="event">
-                    </div>
-                </div>
-                <h2>Conférence musicale</h2>
-                <div><i class="material-icons">schedule</i><h4>6 décembre 2022 - 18h30</h4></div>
-                <div><i class="material-icons">pin_drop</i><h4>Médialudo <br> Blagnac</h4></div>
-                <div class="genre"><h4>Conférence</h4></div>
-            </div>
-
-            <div class="event">
-                <div class="zoom">
-                    <div class="image">
-                        <img src={{asset ('img/17.jpg.webp')}} alt="event">
-                    </div>
-                </div>
-                <h2>Alfred Nakache, le nageur d'Auschwitz</h2>
-                <div><i class="material-icons">schedule</i><h4>16 novembre 2022 - 31 décembre 2022 - 11h</h4></div>
-                <div><i class="material-icons">pin_drop</i><h4>Le Castelet <br> Toulouse</h4></div>
-                <div class="genre"><h4>Exposition</h4></div>
-            </div>
-
-            <div class="event">
-                <div class="zoom">
-                    <div class="image">
-                        <img src={{ asset ('img/30.jpg.webp')}} alt="event">
-                    </div>
-                </div>
-                <h2>La Ruée vers l'or</h2>
-                <div><i class="material-icons">schedule</i><h4>25 novembre 2022 - 20h</h4></div>
-                <div><i class="material-icons">pin_drop</i><h4>Halle aux Grains <br> Toulouse</h4></div>
-                <div class="genre"><h4>Spectacle</h4></div>
-            </div>
-
+            {% include 'manifestations/render_manif.html.twig' %}
         </div>
         
         <a href="{{ path('app_manifestations')}}" class="bttn-primary">Voir tous les évènements</a>
     </section>
-    <script>
-        liste = document.cookie //recupere le cookie  sous forme de chaine de caractere 
-        console.log(liste);
-       // if (liste.length!=0)montab = JSON.parse(liste) // transforme la chaine  en tableau JSON
-        //else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
-       // console.log(montab)
-
-        //panier = 0
-        //montab.forEach(element => {   panier += parseInt(element.quantite) });
-        //document.getElementById('panier').innerHTML = panier
-    </script>
+    <script href="{{ asset('js/general.js') }}"></script>
 {% endblock %}
