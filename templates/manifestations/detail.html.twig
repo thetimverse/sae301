@@ -12,24 +12,25 @@
         </a>
         <div class="event-detail">
             <div class="top">
-                <img src="{{ asset ('img/' ~manif.Affiche ) }}" alt="event">
+                <img id="image" src="{{ asset ('img/' ~manif.Affiche ) }}" alt="event">
                 <div class="top-right">
                     <div>
-                        <h2>{{ manif.Date }}</h2>
-                        <h3>{{ manif.Horaire}}</h3>
+                        <h2 id="date">{{ manif.Date|date("d/m/Y") }}</h2>
+                        <h3 id="horaire">{{ manif.Horaire}}</h3>
                     </div>
-                    <h3>Tarif : {{ manif.Prix }} €</h3>
+                    <h3>Tarif : <span id="prix">{{ manif.Prix }}</span> €</h3>
                 </div>
             </div>
             <div class="titre">
                 <div>
-                    <h1>{{ manif.Titre }}</h1>
+                    <h1 id="titre">{{ manif.Titre }}</h1>
                     <h3>{{ manif.Genre }}</h3>
                 </div>
                 <div>
                     <label for="nb-places"><h4>Nombre de places à réserver</h4></label>
-                    <input type="number" id="nb-places" name="nb-places" min="0" placeholder="0">
-                    <a href="{{ path('app_panier')}}" class="bttn-primary">Réserver</a>
+                    <input id="qte" type="number" id="nb-places" name="nb-places" min="1" placeholder="1">
+                    <input type="hidden" id="id" value="{{ manif.id }}">
+                    <button id="ajout" class="bttn-primary">Réserver</button>
                 </div>
             </div>
             <div class="lieu-detail">
@@ -49,4 +50,39 @@
         </div>
 
     </section>
+
+    <script>
+        document.getElementById("ajout").addEventListener("click", function () {
+        var id = document.getElementById("id").value;
+        var titre = document.getElementById("titre").innerHTML;
+        var date = document.getElementById("date").innerHTML;
+        var horaire = document.getElementById("horaire").innerHTML;
+        var image = document.getElementById("image").src;
+        var prix = document.getElementById("prix").innerHTML;
+        console.log(id + " " + image + " " + prix);
+
+        index = montab.findIndex((element) => element.id == id); //trouver l'article dans la liste du panier
+        if (index > -1) {
+            montab[index].quantite += parseInt(document.getElementById("qte").value);
+            console.log(montab);
+        } else {
+            montab.push({
+            id: id,
+            titre: titre,
+            date: date,
+            horaire: horaire,
+            image: image,
+            quantite: parseInt(document.getElementById("qte").value),
+            prix: prix,
+            })
+            console.log(montab);
+        }
+        document.cookie = JSON.stringify(montab); // sauvegarde des infos dans le cookie "liste"
+        var panier = 0;
+        montab.forEach(element => {
+            panier += parseInt(element.quantite);
+        });
+        document.getElementById("panier").innerHTML = panier;
+        });
+    </script>
 {% endblock %}

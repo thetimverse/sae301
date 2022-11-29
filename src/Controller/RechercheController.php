@@ -20,37 +20,4 @@ class RechercheController extends AbstractController
             'controller_name' => 'RechercheController',
         ]);
     }
-
-    #[Route('/recherche/resultat', name: 'recherche_resultat')]
-    public function resultat(Request $request, EntityManagerInterface $entityManager, ManifestationsRepository $manifestationsRepository): Response
-    {
-        $manifs = [];
-
-            $mot_cle = $request->query->get('mot_cle');
-            $genre = $request->query->get('genre');
-            $date_debut= $request->query->get('date_debut');
-            $date_fin= $request->query->get('date_fin');
-
-
-            if (isset($mot_cle)){
-                $manifs = array_merge($manifs, $manifestationsRepository-> rechercheMotCle($mot_cle));
-            }
-            dump($request->request);
-            if (isset($genre)){
-                $manifs = array_merge($manifs, $manifestationsRepository -> rechercheGenre($genre));
-            }
-
-            if (isset($date_debut)){
-                
-            }
-
-            if (isset($date_fin)){
-                
-            }
-            
-
-        return $this->render('recherche/resultat.html.twig', [
-            'manifs' => $manifs,
-        ]);
-    }
 }

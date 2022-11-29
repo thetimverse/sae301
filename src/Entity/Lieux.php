@@ -21,8 +21,8 @@ class Lieux
     #[ORM\Column(length: 150)]
     private ?string $adresse = null;
 
-    #[ORM\Column]
-    private ?int $cp = null;
+    #[ORM\Column(length: 5)]
+    private ?string $cp = null;
 
     #[ORM\Column(length: 100)]
     private ?string $ville = null;
@@ -70,12 +70,12 @@ class Lieux
         return $this;
     }
 
-    public function getCp(): ?int
+    public function getCp(): ?string
     {
         return $this->cp;
     }
 
-    public function setCp(int $cp): self
+    public function setCp(string $cp): self
     {
         $this->cp = $cp;
 
@@ -146,5 +146,10 @@ class Lieux
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom;
     }
 }

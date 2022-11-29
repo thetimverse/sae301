@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <h2>{{ event.Titre }}</h2>
-                    <div><i class="material-icons">schedule</i><h4>{{ event.Date }} - {{ event.Horaire}}</h4></div>
+                    <div><i class="material-icons">schedule</i><h4>{{ event.Date|date("d/m/Y") }} - {{ event.Horaire}}</h4></div>
                     <div class="genre"><h4>{{ event.Genre }}</h4></div>
                 </a>
                 {% endfor %}

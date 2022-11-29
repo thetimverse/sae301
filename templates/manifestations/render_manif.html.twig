@@ -1,0 +1,15 @@
+{# {% extends 'base.html.twig' %} #}
+
+{% for manif in manifs %}
+    <a href="{{ path('manifestation_detail', {'manifestation':manif.id}) }}" class="event">
+        <div class="zoom">
+            <div class="image">
+                <img src=" {{ asset ('img/' ~manif.Affiche ) }}" alt="event">
+            </div>
+        </div>
+        <h2>{{ manif.Titre }}</h2>
+        <div><i class="material-icons">schedule</i><h4>{{ manif.Date|date("d/m/Y") }} - {{ manif.Horaire}}</h4></div>
+        <div><i class="material-icons">pin_drop</i><h4>{{ manif.Lieux.Nom }} <br> {{ manif.Lieux.Ville }}</h4></div>
+        <div class="genre"><h4>{{ manif.Genre }}</h4></div>
+    </a>
+{% endfor %}
