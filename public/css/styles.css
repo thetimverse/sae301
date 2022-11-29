@@ -97,6 +97,7 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 40px;
 }
 
@@ -111,9 +112,11 @@ a {
     font-size: 20px;
 }
 
-.nav__menu a:hover, .nav__menu a.active{
+.nav__menu a:hover, .link-active{
     color: #DC3E6F;
+    font-weight: 600;
 }
+
 
 
 /* ACCUEIL */
