@@ -4,38 +4,38 @@
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                 <li class="nav__item">
-                    <a href="{{ path('app_accueil')}}" class="nav__link active-link">Accueil</a>
+                    <a href="{{ path('app_accueil')}}" class="{{ app.request.get('_route') == 'app_accueil' ? 'link-active' }}">Accueil</a>
                 </li>
                 <li class="nav__item">
-                    <a href="{{ path('app_manifestations')}}" class="nav__link">Évènements</a>
+                    <a href="{{ path('app_manifestations')}}" class="{{ app.request.get('_route') == 'app_manifestations' ? 'link-active' }}">Évènements</a>
                 </li>
                 <li class="nav__item">
-                    <a href="{{ path('app_lieux')}}" class="nav__link">Lieux culturels</a>
+                    <a href="{{ path('app_lieux')}}" class="{{ app.request.get('_route') == 'app_lieux' ? 'link-active' }}">Lieux culturels</a>
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav__item">
-                    <a href="{{ path('app_admin')}}" class="nav__link">Admin</a>
+                    <a href="{{ path('app_admin')}}" class="{{ app.request.get('_route') == 'app_admin' ? 'link-active' }}">Admin</a>
                 </li>
                 {% endif %}
                 {% if app.user %}
                 <li class="nav__item">
-                    <a href="{{ path('app_panier')}}" class="nav__link"><i class="material-icons">shopping_cart</i><span id="panier"></span></a>
+                    <a href="{{ path('app_panier')}}" class="{{ app.request.get('_route') == 'app_panier' ? 'link-active' }}"><i class="material-icons">shopping_cart</i><span id="panier"></span></a>
                 </li>
                <li class="nav__item">
-                    <a href="{{ path('app_compte')}}" class="nav__link"><i class="material-icons">account_circle</i></a>
+                    <a href="{{ path('app_compte')}}" class="{{ app.request.get('_route') == 'app_compte' ? 'link-active' }}"><i class="material-icons">account_circle</i></a>
                 </li>
                 <li class="nav__item">
-                    <a href="{{ path('app_logout')}}" class="nav__link"><i class="material-icons">logout</i></a>
+                    <a href="{{ path('app_logout')}}" class="{{ app.request.get('_route') == 'app_logout' ? 'link-active' }}"><i class="material-icons">logout</i></a>
                </li>
                 {% else %}
                 <li class="nav__item">
-                    <a href="{{ path('app_register')}}" class="nav__link">Inscription</a>
+                    <a href="{{ path('app_register')}}" class="{{ app.request.get('_route') == 'app_register' ? 'link-active' }}">Inscription</a>
                 </li>
                 <li class="nav__item">
-                    <a href="{{ path('app_panier')}}" class="nav__link"><i class="material-icons">shopping_cart</i><span id="panier"></span></a>
+                    <a href="{{ path('app_panier')}}" class="{{ app.request.get('_route') == 'app_panier' ? 'link-active' }}"><i class="material-icons">shopping_cart</i><span id="panier"></span></a>
                 </li>
                 <li class="nav__item">
-                    <a href="{{ path('app_login')}}" class="nav__link"><i class="material-icons">account_circle</i></a>
+                    <a href="{{ path('app_login')}}" class="{{ app.request.get('_route') == 'app_login' ? 'link-active' }}"><i class="material-icons">account_circle</i></a>
                 </li>
                 {% endif %}
             </ul>
@@ -51,51 +51,6 @@
     </nav>
 </header>
 
+<script>
 
-
-{# <header class="header" id="header">
-    <nav class="nav container">
-        <a href="accueil" class="nav__logo">Toulouse<span>Culture</span></a>
-        <div class="nav__menu" id="nav-menu">
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="{{ path('app_accueil')}}" class="nav__link active-link">Accueil</a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ path('app_manifestations')}}" class="nav__link">Évènements</a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ path('app_lieux')}}" class="nav__link">Lieux</a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ path('app_recherche')}}" class="nav__link">Recherche</a>
-                </li>
-                <li class="nav__item">
-                    {% if is_granted("ROLE_ADMIN") %}
-                    {# <a href="{{ path('app_admin')}}" class="nav__link">Administration</a> #}
-                    {# {% endif %}
-                </li>
-                <li class="nav__item">
-                    {% if app.user %} #}
-                    {# <a href="{{ path('app_logout')}}" class="nav__link">Déconnexion</a> #}
-                {# </li>
-                <li class="nav__item">
-                    {% else %} #}
-                    {# <a href="{{ path('app_login')}}" class="nav__link">Connexion</a> #}
-                {# </li>
-                <li class="nav__item"> #}
-                    {# <a href="{{ path('app_register')}}" class="nav__link">S'inscrire</a> #}
-                    {# {% endif %}
-                </li>
-            </ul>
-            <div class="nav__close" id="nav-close">
-                <i class="ri-close-line"></i>
-            </div>
-        </div>
-
-        <!-- Toggle button -->
-        <div class="nav__toggle" id="nav-toggle">
-            <i class="ri-menu-line"></i>
-        </div>
-    </nav>
-</header> #}
+</script>
