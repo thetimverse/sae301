@@ -3,22 +3,23 @@ if (liste!="")montab = JSON.parse(liste) // transforme la chaine  en tableau JSO
 else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
 console.log(montab)
 
-document.getElementById('liste').value=JSON.stringify(montab); // sauver montab pour le formulaire
+document.getElementById('liste').value="panier="+JSON.stringify(montab)+"; path=/" // sauver montab pour le formulaire
 
 var totalgeneral=0
 montab.forEach(manif => {  
 
     html = `<tr id="${manif.id}">
+    <td class="image"><img src="${manif.image}"></td>
         <td class="infos"><h3>${manif.titre}</h3><br><h4>${manif.date} - ${manif.horaire}</h4></td>
         <td id="quantite">
-        <div><i class="material-icons moins">remove_circle</i><span>${manif.quantite}</span><i class="material-icons plus">add_circle</i></div> 
+        <div><button class="moins">-</button><span>${manif.quantite}</span><button class="plus">+</button></div> 
         </td>
         <td><span class="unitaire">${manif.prix} €</span></td>
         <td><span class="prix">${manif.prix * manif.quantite} €</span></td>
         </tr>`;
 
     document.getElementById('zone').innerHTML += html
-    totalgeneral += uneinfo.prix * uneinfo.quantite
+    totalgeneral += manif.prix * manif.quantite
 })
 
 document.getElementById('total').innerHTML = totalgeneral
