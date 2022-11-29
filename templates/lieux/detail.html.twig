@@ -3,6 +3,59 @@
 {% block title %}Lieux Culturels{% endblock %}
 
 {% block body %}
+<section id="main">
+        <a id="back" href="manifestations.php">
+            <div>
+            <i class="material-icons material-symbols-rounded">arrow_circle_left</i>
+            <h4>Retour</h4>
+            </div>
+        </a>
+        <div class="lieux-detail">
+            <div class="top">
+               <img src=" {{ asset ('img/' ~lieu.Image ) }}" alt="{{ lieu.Nom }}">
+            </div>
+            <div class="titre">
+                <div>
+                    <h1>{{ lieu.Nom }}</h1>
+                    <h3>Capacité : {{ lieu.Capacite }} places</h3>
+                </div>
+            </div>
+            <div class="lieu-detail">
+                <div class="adresse">
+                    <i class="material-icons">pin_drop</i>
+                    <div><h4>{{ lieu.Adresse }}<br> {{ lieu.Ville }} <br>{{ lieu.Cp }}</h4></div>
+                </div>
+            </div>
+
+            <h2>Évènements dans ce lieu</h2>
+            <table class="events-list">
+            {% if events %}
+                {% for event in events %}
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="{{ path('manifestation_detail', {'manifestation':event.id}) }}">
+                                <img src=" {{ asset ('img/' ~event.Affiche ) }} " alt="{{ event.Titre }}">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('manifestation_detail', {'manifestation':event.id}) }}">
+                            <h2>{{ event.Titre }}</h2>
+                            <div>
+                                <i class="material-icons">schedule</i>
+                                <h4>{{ event.Date|date("d/m/Y") }} - {{ event.Horaire}}</h4>
+                            </div>
+                            <div class="genre"><h4>{{ event.Genre }}</h4></div>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            {% endif %}
+            </table>
+        </div>     
+    </section>
+
     <section id="main">
         <div>
             <h3>{{ lieu.Nom }}</h3>
