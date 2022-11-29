@@ -15,7 +15,7 @@
                 <img id="image" src="{{ asset ('img/' ~manif.Affiche ) }}" alt="event">
                 <div class="top-right">
                     <div>
-                        <h2 id="date">{{ manif.Date|date("d/m/Y") }}</h2>
+                        <h2 id="date">{{ manif.Date|date("d M Y") }}</h2>
                         <h3 id="horaire">{{ manif.Horaire}}</h3>
                     </div>
                     <h3>Tarif : <span id="prix">{{ manif.Prix }}</span> €</h3>
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <label for="nb-places"><h4>Nombre de places à réserver</h4></label>
-                    <input id="qte" type="number" id="nb-places" name="nb-places" min="1" placeholder="1">
+                    <input id="qte" type="number" id="nb-places" name="nb-places" value="1">
                     <input type="hidden" id="id" value="{{ manif.id }}">
                     <button id="ajout" class="bttn-primary">Réserver</button>
                 </div>
@@ -52,6 +52,15 @@
     </section>
 
     <script>
+        liste = document.cookie //recupere le cookie  sous forme de chaine de caractere 
+        if (liste.length!=0)montab = JSON.parse(liste) // transforme la chaine  en tableau JSON
+        else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
+        console.log(montab)
+
+        panier = 0
+        montab.forEach(element => {   panier += parseInt(element.quantite) });
+        document.getElementById('panier').innerHTML = panier
+
         document.getElementById("ajout").addEventListener("click", function () {
         var id = document.getElementById("id").value;
         var titre = document.getElementById("titre").innerHTML;
@@ -77,7 +86,8 @@
             })
             console.log(montab);
         }
-        document.cookie = JSON.stringify(montab); // sauvegarde des infos dans le cookie "liste"
+        document.cookie = "liste="+JSON.stringify(montab); // sauvegarde des infos dans le cookie "liste"
+        document.cookie = "toto=titi"
         var panier = 0;
         montab.forEach(element => {
             panier += parseInt(element.quantite);

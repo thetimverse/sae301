@@ -49,4 +49,15 @@
         
         <a href="{{ path('app_manifestations')}}" class="bttn-primary">Voir tous les évènements</a>
     </section>
+    <script>
+        liste = document.cookie //recupere le cookie  sous forme de chaine de caractere 
+        console.log(liste);
+       // if (liste.length!=0)montab = JSON.parse(liste) // transforme la chaine  en tableau JSON
+        //else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
+       // console.log(montab)
+
+        //panier = 0
+        //montab.forEach(element => {   panier += parseInt(element.quantite) });
+        //document.getElementById('panier').innerHTML = panier
+    </script>
 {% endblock %}
