@@ -77,7 +77,7 @@ class ManifestationsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-/**
+    /**
      * @return Manifestations[] Returns an array of Manifestations objects
      */
     public function rechercheDate($value): array
@@ -86,6 +86,22 @@ class ManifestationsRepository extends ServiceEntityRepository
             ->select('DISTINCT m')
             ->andWhere('m.date LIKE :date')
             ->setParameter('date', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function lastManifs($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.date >= :date')
+            ->setParameter('date', $value)
+            ->orderBy('m.date', 'ASC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;

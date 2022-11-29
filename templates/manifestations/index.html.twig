@@ -35,6 +35,42 @@
             {% include 'manifestations/render_manif.html.twig' %}
         </div>
     </section>
+    <script>
+        function function_recherche() {
+            var path = "{{path('recherche_resultat')}}";
+            console.log("go")
+            $.ajax({
+                type: 'POST',
+                 data: {
+                     'mot_cle' : $("#mot_cle").val(),
+                     'genre' : $("#genre").val(),
+                     'date_debut' : $("#date_debut").val()
+                 },
+                url: path,
+                success: function(data) {
+                    $('#events').html(data);
+                    document.getElementById('events').scrollIntoView({
+                        behavior: 'smooth'
+                    })
+                },
+                error: function(data) {
+                alert('Erreur lors de la recherche')
+                }
+            });
+        };
+        
+        function function_valider_recherche() {
+            if(document.getElementById("mot_cle").length > 0 || document.getElementById("genre").length > 0 || 
+            document.getElementById("date_debut").length > 0 || document.getElementById("date_fin").length > 0){
+                function_recherche();
+            }
+        }
 
+        document.onkeypress = function (e) {
+            if (e.key === 'Enter') {
+                function_valider_recherche()
+            }
+        }
+    </script>
     <script href="{{ asset('js/general.js') }}"></script>
 {% endblock %}
