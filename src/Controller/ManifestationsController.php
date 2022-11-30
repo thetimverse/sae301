@@ -57,6 +57,10 @@ class ManifestationsController extends AbstractController
                 
             }
 
+            if ($mot_cle == null && $genre == null && $date_debut == null && $date_fin == null) {
+                $manifs = $manifestationsRepository->findAll();
+            }
+
             $manifs = array_unique($manifs, SORT_REGULAR);
             
 

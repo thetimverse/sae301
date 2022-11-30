@@ -35,54 +35,42 @@
             {% include 'manifestations/render_manif.html.twig' %}
         </div>
     </section>
+    <script>
+        function function_recherche() {
+            var path = "{{path('recherche_resultat')}}";
+            console.log("go")
+            $.ajax({
+                type: 'POST',
+                 data: {
+                     'mot_cle' : $("#mot_cle").val(),
+                     'genre' : $("#genre").val(),
+                     'date_debut' : $("#date_debut").val()
+                 },
+                url: path,
+                success: function(data) {
+                    $('#events').html(data);
+                    document.getElementById('events').scrollIntoView({
+                        behavior: 'smooth'
+                    })
+                },
+                error: function(data) {
+                alert('Erreur lors de la recherche')
+                }
+            });
+        };
+        
+        function function_valider_recherche() {
+            if(document.getElementById("mot_cle").length > 0 || document.getElementById("genre").length > 0 || 
+            document.getElementById("date_debut").length > 0 || document.getElementById("date_fin").length > 0){
+                function_recherche();
+            }
+        }
 
-        <script>
-            
-        liste = document.cookie //recupere le cookie  sous forme de chaine de caractere 
-        console.log(liste)
-        // if (liste.length!=0)montab = JSON.parse(liste) // transforme la chaine  en tableau JSON
-        // else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
-        // //console.log(montab)
-
-        // panier = 0
-        // montab.forEach(element => {   panier += parseInt(element.quantite) });
-        // document.getElementById('panier').innerHTML = panier
-
-        // document.onkeypress = function (e) {
-        //     if (e.key === 'Enter') {
-        //         function_valider_recherche()
-        //     }
-        // }
-
-        // function function_valider_recherche() {
-
-        //     if(document.getElementById("mot_cle").length > 0 || document.getElementById("genre").length > 0 || 
-        //     document.getElementById("date_debut").length > 0 || document.getElementById("date_fin").length > 0){
-        //         function_recherche();
-        //     }
-        // }
-
-        // function function_recherche() {
-        //     var path = "{{path('recherche_resultat')}}";
-        //     console.log("go")
-        //     $.ajax({
-        //         type: 'POST',
-        //          data: {
-        //              'mot_cle' : $("#mot_cle").val(),
-        //              'genre' : $("#genre").val(),
-        //              'date_debut' : $("#date_debut").val()
-        //          },
-        //         url: path,
-        //         success: function(data) {
-        //             $('#events').html(data);
-        //             document.getElementById('events').scrollIntoView({
-        //                 behavior: 'smooth'
-        //             })
-        //         },
-        //         error: function(data) {
-        //         alert('Erreur lors de la recherche')
-        //         }
-        //     });
-        // };
+        document.onkeypress = function (e) {
+            if (e.key === 'Enter') {
+                function_valider_recherche()
+            }
+        }
     </script>
+    <script src="{{ asset('js/general.js') }}"></script>
 {% endblock %}
