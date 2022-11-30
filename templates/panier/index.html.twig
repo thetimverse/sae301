@@ -22,9 +22,9 @@
         </div>
         
         <div id="bttn">
-            <a href="{{ path('app_accueil')}}" class="bttn-secondary">Annuler</a>
+            <a href="{{ path('app_accueil')}}" class="bttn-secondary" onclick="viderPanier()">Annuler</a>
             <input type="hidden" name="liste" id="liste">
-            <a href="#" class="bttn-primary">Effectuer la commande</a>
+            <a href="{{ path('panier_validation')}}" class="bttn-primary">Effectuer la commande</a>
         </div>
     </section>
     <script src="{{ asset('js/panier.js') }}"></script>
