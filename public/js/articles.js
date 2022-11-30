@@ -6,7 +6,7 @@ document.getElementById("ajout").addEventListener("click", function () {
     var image = document.getElementById("image").src;
     var prix = document.getElementById("prix").innerHTML;
     console.log(id + " " + image + " " + prix);
-
+    if (!montab) montab = []
     index = montab.findIndex((element) => element.id == id); //trouver l'article dans la liste du panier
     if (index > -1) {
         montab[index].quantite += parseInt(document.getElementById("qte").value);
@@ -23,7 +23,7 @@ document.getElementById("ajout").addEventListener("click", function () {
         })
         console.log(montab);
     }
-    document.cookie = "liste="+JSON.stringify(montab); // sauvegarde des infos dans le cookie "liste"
+    document.cookie = "panier="+JSON.stringify(montab)+"; path=/" // sauvegarde des infos dans le cookie "liste"
     var panier = 0;
     montab.forEach(element => {
         panier += parseInt(element.quantite);
