@@ -88,3 +88,7 @@ function recupCookie(nom){
        })
        return sortie
 }
+
+function viderPanier() {
+    document.cookie="panier=;expires=Thu, 01 Jan 1970;path=/;";
+}
