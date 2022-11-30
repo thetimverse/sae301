@@ -82,6 +82,3 @@ function showSearch() {
 }
 
 document.getElementById("search-icon").addEventListener("click", showSearch);
-
-
-

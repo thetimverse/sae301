@@ -6,6 +6,7 @@ console.log(montab)
 document.getElementById('liste').value="panier="+JSON.stringify(montab)+"; path=/" // sauver montab pour le formulaire
 
 var totalgeneral=0
+
 montab.forEach(manif => {  
 
     html = `<tr id="${manif.id}">
@@ -15,14 +16,14 @@ montab.forEach(manif => {
         <div><i class="material-icons moins">remove_circle</i><h4><span>${manif.quantite}</span></h4><i class="material-icons plus">add_circle</i></div> 
         </td>
         <td><h4><span class="unitaire">${manif.prix} €</span></h4></td>
-        <td><h4><span class="prix">${manif.prix * manif.quantite}</span><span> €</span></h4></td>
+        <td><h4><span class="prix">${(manif.prix * manif.quantite).toFixed(2)}</span><span> €</span></h4></td>
         </tr>`;
 
     document.getElementById('zone').innerHTML += html
     totalgeneral += manif.prix * manif.quantite
 })
 
-document.getElementById('total').innerHTML = totalgeneral
+document.getElementById('total').innerHTML = totalgeneral.toFixed(2)
 
 document.querySelectorAll('.plus').forEach(clickplus)
     
@@ -32,23 +33,15 @@ function clickplus(tag){
     qte++;
     this.parentNode.querySelector('span').innerHTML=qte;
     prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
-    console.log(prix)
-    console.log(qte)
     total= prix*qte;
     this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
-    console.log(total)
     id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
-    console.log(id)
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
-    console.log( montab)
-    console.log(index)
     montab[index].quantite	= parseInt(montab[index].quantite) +1; //incrementer la quantité
-    document.cookie = JSON.stringify(montab);  // sauvegarde des infos dans le cookie "liste"
+    document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
 
     totalgeneral += parseFloat(prix)
     document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
-    console.log(totalgeneral)
-
 })}
 
 document.querySelectorAll('.moins').forEach(clickmoins)
@@ -67,7 +60,13 @@ function clickmoins(tag){
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
     montab[index].quantite	= parseInt(montab[index].quantite) -1; //incrementer la quantité
 
+    if (montab[index].quantite==0 && montab[index]!=null) {
+        montab.splice(index, 1)
+        document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
+        return window.location.reload()
+    }
     console.log(montab)
+    
     document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
 
     totalgeneral -= parseFloat(prix)
@@ -87,4 +86,8 @@ function recupCookie(nom){
            else sortie=null;
        })
        return sortie
+}
+
+function viderPanier() {
+    document.cookie="panier=;expires=Thu, 01 Jan 1970;path=/;";
 }

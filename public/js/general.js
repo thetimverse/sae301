@@ -1,7 +1,7 @@
 liste = recupCookie("panier") //recupere le cookie  sous forme de chaine de caractere 
 
-if (liste !=null) {if (liste.length !=0) montab  = JSON.parse(liste) }// transforme la chaine  en tableau JSON
-    else montab =Array() // si il n'y a pas de tableau dans le cookie alors créer le tableau
+if (liste !=null) {if (liste.length !=0) {montab  = JSON.parse(liste) }else { montab =Array()}}// transforme la chaine  en tableau JSON
+    else { montab =Array()} // si il n'y a pas de tableau dans le cookie alors créer le tableau
     console.log(montab)
 
     panier = 0

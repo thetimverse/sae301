@@ -3,5 +3,33 @@
 {% block title %}Panier - SAÉ301{% endblock %}
 
 {% block body %}
+<section id="main">
+    <h1>Validation panier</h1>
+    <h2>Adresse de livraison</h2>
+    <form action="">
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
+        <label for="prenom">Prénom</label>
+        <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required>
+        <label for="adresse">Adresse</label>
+        <input type="text" name="adresse" id="adresse" placeholder="Votre adresse" required>
+        <label for="ville">Ville</label>
+        <input type="text" name="ville" id="ville" placeholder="Votre ville" required>
+        <label for="cp">Nom</label>
+        <input type="text" name="cp" id="cp" placeholder="Votre code postal" required>
+    </form>
+    <h2>Moyen de paiement</h2>
+    <form action="">
+        <label for="paypal">Paypal</label>
+        <input type="checkbox" name="paypal" id="paypal">
+        <label for="cb">Carte bancaire</label>
+        <input type="checkbox" name="cb" id="cb">
+        <label for="cheque">Chèque</label>
+        <input type="checkbox" name="cheque" id="cheque">
+        <label for="virement">Virement</label>
+        <input type="checkbox" name="virement" id="virement">
+    </form>
+    <button>Valider la commande</button>
+</section>
     <script src="{{ asset('js/panier.js') }}"></script>
 {% endblock %}

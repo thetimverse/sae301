@@ -5,12 +5,10 @@ document.getElementById("ajout").addEventListener("click", function () {
     var horaire = document.getElementById("horaire").innerHTML;
     var image = document.getElementById("image").src;
     var prix = document.getElementById("prix").innerHTML;
-    console.log(id + " " + image + " " + prix);
     if (!montab) montab = []
     index = montab.findIndex((element) => element.id == id); //trouver l'article dans la liste du panier
     if (index > -1) {
         montab[index].quantite += parseInt(document.getElementById("qte").value);
-        console.log(montab);
     } else {
         montab.push({
         id: id,
@@ -21,7 +19,6 @@ document.getElementById("ajout").addEventListener("click", function () {
         quantite: parseInt(document.getElementById("qte").value),
         prix: prix,
         })
-        console.log(montab);
     }
     document.cookie = "panier="+JSON.stringify(montab)+"; path=/" // sauvegarde des infos dans le cookie "liste"
     var panier = 0;
