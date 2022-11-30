@@ -15,4 +15,12 @@ class PanierController extends AbstractController
             'controller_name' => 'PanierController',
         ]);
     }
+
+    #[Route('/panier/validation', name: 'panier_validation')]
+    public function panierValidation(): Response
+    {
+        return $this->render('panier/validation.html.twig', [
+            'controller_name' => 'PanierController',
+        ]);
+    }
 }
