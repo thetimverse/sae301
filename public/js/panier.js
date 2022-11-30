@@ -12,7 +12,7 @@ montab.forEach(manif => {
     <td><img src="${manif.image}"></td>
         <td class="infos"><h3>${manif.titre}</h3><br><h4>${manif.date} - ${manif.horaire}</h4></td>
         <td id="quantite">
-        <div><button class="moins">-</button><span>${manif.quantite}</span><button class="plus">+</button></div> 
+        <div><i class="material-icons moins">remove_circle</i><span>${manif.quantite}</span><i class="material-icons plus">add_circle</i></div> 
         </td>
         <td><span class="unitaire">${manif.prix} €</span></td>
         <td><span class="prix">${manif.prix * manif.quantite}</span><span> €</span></td>
