@@ -9,13 +9,13 @@ var totalgeneral=0
 montab.forEach(manif => {  
 
     html = `<tr id="${manif.id}">
-    <td class="image"><img src="${manif.image}"></td>
+    <td><img src="${manif.image}"></td>
         <td class="infos"><h3>${manif.titre}</h3><br><h4>${manif.date} - ${manif.horaire}</h4></td>
         <td id="quantite">
-        <div><button class="moins">-</button><span>${manif.quantite}</span><button class="plus">+</button></div> 
+        <div><i class="material-icons moins">remove_circle</i><span>${manif.quantite}</span><i class="material-icons plus">add_circle</i></div> 
         </td>
         <td><span class="unitaire">${manif.prix} €</span></td>
-        <td><span class="prix">${manif.prix * manif.quantite} €</span></td>
+        <td><span class="prix">${manif.prix * manif.quantite}</span><span> €</span></td>
         </tr>`;
 
     document.getElementById('zone').innerHTML += html
@@ -28,20 +28,26 @@ document.querySelectorAll('.plus').forEach(clickplus)
     
 function clickplus(tag){
     tag.addEventListener('click',function() { 
-    qte=this.parentNode.querySelector('span').innerHTML;
+    qte= parseInt( this.parentNode.querySelector('span').innerHTML);
     qte++;
     this.parentNode.querySelector('span').innerHTML=qte;
-    prix=this.parentNode.parentNode.querySelector('.unitaire').innerHTML;
+    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
+    console.log(prix)
+    console.log(qte)
     total= prix*qte;
-    this.parentNode.parentNode.querySelector('.prix').innerHTML=total;
-
-    id = this.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
+    console.log(total)
+    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    console.log(id)
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
+    console.log( montab)
+    console.log(index)
     montab[index].quantite	= parseInt(montab[index].quantite) +1; //incrementer la quantité
     document.cookie = JSON.stringify(montab);  // sauvegarde des infos dans le cookie "liste"
 
-    totalgeneral += parseInt(prix)
-    document.querySelector('#total').innerHTML=totalgeneral
+    totalgeneral += parseFloat(prix)
+    document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
+    console.log(totalgeneral)
 
 })}
 
@@ -49,23 +55,23 @@ document.querySelectorAll('.moins').forEach(clickmoins)
     
 function clickmoins(tag){
     tag.addEventListener('click',function() { 
-    qte=this.parentNode.querySelector('span').innerHTML;
+    qte=parseInt(this.parentNode.querySelector('span').innerHTML);
     if( qte>0){
     qte--
     this.parentNode.querySelector('span').innerHTML=qte;
-    prix=this.parentNode.parentNode.querySelector('.unitaire').innerHTML;
+    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
     total= prix*qte;
-    this.parentNode.parentNode.querySelector('.prix').innerHTML=total;
+    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
 
-    id = this.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
     montab[index].quantite	= parseInt(montab[index].quantite) -1; //incrementer la quantité
 
     console.log(montab)
     document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
 
-    totalgeneral -= parseInt(prix)
-    document.querySelector('#total').innerHTML=totalgeneral
+    totalgeneral -= parseFloat(prix)
+    document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
     }
 
 })}  
