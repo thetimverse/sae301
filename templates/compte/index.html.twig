@@ -10,7 +10,7 @@
     <div id="cart">
         <table>
             <thead>
-                <th colspan=2><h3>Date</h3></th>
+                <th><h3>Date</h3></th>
                 <th><h3>Détails</h3></th>
                 <th><h3>Prix</h3></th>
                 <th><h3>PDF</h3></th>
@@ -18,13 +18,13 @@
             <tbody id="zone">
                 {% for commande in commandes %}
                     <tr>
-                        <td>{{ commande.date }}</td>
-                        <td>{% for manif in commande.manifestations.values %}
-                            {{ manif.titre }}{{ manif.date }}{{ manif.horaire }}
+                        <td>{{ commande.date | date ('d M Y H:m') }}</td>
+                        <td>{% for manif in commande.manifestations %}
+                            {{ manif.titre }} {{ manif.date }} {{ manif.horaire }}<br>
                             {% endfor %}
                         </td>
-                        <td>{{ commande.manifestations.prix }}</td>
-                        <td>{{ commande.manifestations.titre }}</td>
+                        <td>{{ commande.total }}</td>
+                        <td><button>PDF</button></td>
                     </tr>
                 {% endfor %}
             </tbody>
