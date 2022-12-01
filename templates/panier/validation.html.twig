@@ -5,8 +5,30 @@
 {% block body %}
 <section id="main">
     <h1>Validation panier</h1>
+    <h2>Votre panier</h2>
+    <div>
+        <table>
+            <thead>
+                <th><h3>Évènement(s)</h3></th>
+                <th><h3>Quantité</h3></th>
+                <th><h3>Prix unitaire</h3></th>
+                <th><h3>Prix total</h3></th>
+            </thead>
+            <tbody>
+        {% for article in panier %}
+                <tr id="{{article.id}}">
+                    <td class="infos"><h3>{{article.titre}}</h3><br><h4>{{article.date}} - {{article.horaire}}</h4></td>
+                    <td><div><h4>{{article.quantite}}</h4></div></td>
+                    <td><h4><span class="unitaire">{{article.prix}} €</span></h4></td>
+                    <td><h4><span class="prix">{{(article.prix * article.quantite)|round(2)}}</span><span> €</span></h4></td>
+                </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+        <h2><span>Total : </span><span id="total">{{total}}</span> €</h2>
+    </div>
     <h2>Adresse de livraison</h2>
-    <form action="">
+    <form action="{{path ("panier_achat")}}" method="post">
         <label for="nom">Nom</label>
         <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
         <label for="prenom">Prénom</label>
@@ -17,19 +39,18 @@
         <input type="text" name="ville" id="ville" placeholder="Votre ville" required>
         <label for="cp">Nom</label>
         <input type="text" name="cp" id="cp" placeholder="Votre code postal" required>
+
+        <h2>Moyen de paiement</h2>
+            <label for="paypal">Paypal</label>
+            <input type="checkbox" name="paypal" id="paypal">
+            <label for="cb">Carte bancaire</label>
+            <input type="checkbox" name="cb" id="cb">
+            <label for="cheque">Chèque</label>
+            <input type="checkbox" name="cheque" id="cheque">
+            <label for="virement">Virement</label>
+            <input type="checkbox" name="virement" id="virement">
+        <input type="submit" value"Valider la commande">
     </form>
-    <h2>Moyen de paiement</h2>
-    <form action="">
-        <label for="paypal">Paypal</label>
-        <input type="checkbox" name="paypal" id="paypal">
-        <label for="cb">Carte bancaire</label>
-        <input type="checkbox" name="cb" id="cb">
-        <label for="cheque">Chèque</label>
-        <input type="checkbox" name="cheque" id="cheque">
-        <label for="virement">Virement</label>
-        <input type="checkbox" name="virement" id="virement">
-    </form>
-    <button>Valider la commande</button>
 </section>
     <script src="{{ asset('js/general.js') }}"></script>
 {% endblock %}

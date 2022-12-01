@@ -38,13 +38,11 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Manifestations::class, inversedBy: 'commandes')]
-    private Collection $manifestations;
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $manifestations = [];
 
-    public function __construct()
-    {
-        $this->manifestations = new ArrayCollection();
-    }
+    #[ORM\Column]
+    private ?float $total = null;
 
     public function getId(): ?int
     {
@@ -135,26 +133,26 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return Collection<int, Manifestations>
-     */
-    public function getManifestations(): Collection
+    public function getManifestations(): array
     {
         return $this->manifestations;
     }
 
-    public function addManifestation(Manifestations $manifestation): self
+    public function setManifestations(array $manifestations): self
     {
-        if (!$this->manifestations->contains($manifestation)) {
-            $this->manifestations->add($manifestation);
-        }
+        $this->manifestations = $manifestations;
 
         return $this;
     }
 
-    public function removeManifestation(Manifestations $manifestation): self
+    public function getTotal(): ?float
     {
-        $this->manifestations->removeElement($manifestation);
+        return $this->total;
+    }
+
+    public function setTotal(float $total): self
+    {
+        $this->total = $total;
 
         return $this;
     }

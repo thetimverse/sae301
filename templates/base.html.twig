@@ -21,6 +21,11 @@
     </head>
     <body>
     {% include "menu.html.twig" %}
+        {% for message in app.flashes('success') %}
+            <div id="alert_message" class="alert alert-success">
+            {{message}}
+            </div> 
+        {% endfor %}
         {% block body %}
 
         {% endblock %}

@@ -45,14 +45,6 @@ class Manifestations
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'manifestations')]
-    private Collection $commandes;
-
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -167,33 +159,6 @@ class Manifestations
     public function setDate(\DateTimeInterface $DateTime): self
     {
         $this->date = $DateTime;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Commande>
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes->add($commande);
-            $commande->addManifestation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            $commande->removeManifestation($this);
-        }
 
         return $this;
     }
