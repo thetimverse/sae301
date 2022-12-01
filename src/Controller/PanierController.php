@@ -24,7 +24,7 @@ class PanierController extends AbstractController
         if ($user==null) {
             return $this->redirectToRoute('app_login', ["panier"=>true]);
         }
-        dd($request->server->get('HTTP_COOKIE'));
+        dd($request->cookies->get('panier'));
         return $this->render('panier/validation.html.twig', [
             'controller_name' => 'PanierController',
         ]);

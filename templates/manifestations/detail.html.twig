@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Évènements{% endblock %}
+{% block title %}{{manif.Titre}}{% endblock %}
+{% block meta_description %}{{ manif.Titre }} est un(e) {{manif.Genre}} qui se déroule dans la ville de {{ manif.Lieux.Ville }} le {{ manif.Date|date("d M Y") }} à {{ manif.Horaire}}.{% endblock %}
 
 {% block body %}
     <section id="main">

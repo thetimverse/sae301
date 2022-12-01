@@ -16,7 +16,9 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
+        return $this->render('admin/dashboard.html.twig', [
+            'page_title' =>'Administration'
+        ]);
     
         // return parent::index();
 
@@ -40,7 +42,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Sae301');
+            ->setTitle('Toulouse Culture');
     }
 
     public function configureMenuItems(): iterable

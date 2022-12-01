@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lieux Culturels{% endblock %}
+{% block title %}{{ lieu.Nom }}{% endblock %}
+{% block meta_description %}{{ lieu.Nom }} est un lieu culturel accueillant des évènements dans la ville de {{lieu.Ville}}{% endblock %}
 
 {% block body %}
 <section id="main">
