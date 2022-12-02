@@ -79,7 +79,6 @@ class PanierController extends AbstractController
 
         $mailer->send($email);
         $this -> addFlash("success", "Commande réussie !");
-
         return $this->redirectToRoute('app_accueil');
     }
 }

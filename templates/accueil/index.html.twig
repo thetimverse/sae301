@@ -15,4 +15,11 @@
         <a href="{{ path('app_manifestations')}}" class="bttn-primary">Voir tous les évènements</a>
     </section>
     <script src="{{ asset('js/general.js') }}"></script>
+
+        {% if app.request.headers.get('referer') ends with path ('panier_validation') %}
+            <script>
+                document.cookie="panier=;expires=Thu, 01 Jan 1970;path=/;";
+            </script>
+        {% endif %}
+
 {% endblock %}
