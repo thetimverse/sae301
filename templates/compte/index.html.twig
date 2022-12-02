@@ -18,13 +18,13 @@
             <tbody id="zone">
                 {% for commande in commandes %}
                     <tr>
-                        <td>{{ commande.date | date ('d M Y H:m') }}</td>
+                        <td>{{ commande.date | date ('d M Y H:i') }}</td>
                         <td>{% for manif in commande.manifestations %}
                             {{ manif.titre }} {{ manif.date }} {{ manif.horaire }}<br>
                             {% endfor %}
                         </td>
                         <td>{{ commande.total }}</td>
-                        <td><button>PDF</button></td>
+                        <td><button>Télécharger le PDF</button></td>
                     </tr>
                 {% endfor %}
             </tbody>

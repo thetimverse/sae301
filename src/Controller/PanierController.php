@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
@@ -58,7 +59,7 @@ class PanierController extends AbstractController
         $commande -> setUser($user)
         -> setManifestations($panier)
         -> setTotal($total)
-        -> setDate(new DateTime('now'))
+        -> setDate(new DateTime('now', new DateTimeZone('Europe/Paris')))
         -> setNom($recupDonnee['nom'])
         -> setPrenom($recupDonnee['prenom'])
         -> setAdresse($recupDonnee['adresse'])
@@ -71,13 +72,12 @@ class PanierController extends AbstractController
         $email = (new Email())
             ->from('toulouseculture@mmi21f13et15.fr')
             ->to($user->getEmail())
-            ->bcc('julie.van-houdenhove@etudiant.univ-reims.fr','timothee.pluot@etudiant.univ-reims.fr')
+            ->bcc('julie.van-houdenhove@etudiant.univ-reims.fr')
             ->subject('Confirmation de commande')
             ->text('Sending emails is fun again!')
             ->html('<p>See Twig integration for better HTML integration!</p>');
 
         $mailer->send($email);
-
         $this -> addFlash("success", "Commande réussie !");
 
         return $this->redirectToRoute('app_accueil');
