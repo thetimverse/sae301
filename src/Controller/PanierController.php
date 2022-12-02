@@ -70,7 +70,7 @@ class PanierController extends AbstractController
         $entityManagerInterface->flush();
 
         $email = (new Email())
-            ->from('toulouseculture@mmi21f13et15.fr')
+            ->from('mmi21f15@mmi-troyes.fr')
             ->to($user->getEmail())
             ->bcc('julie.van-houdenhove@etudiant.univ-reims.fr')
             ->subject('Confirmation de commande')
