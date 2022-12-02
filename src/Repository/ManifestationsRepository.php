@@ -107,23 +107,72 @@ class ManifestationsRepository extends ServiceEntityRepository
         ;
     }
 
-    // public function rechercheDateDebut()
-    // {
-    //     return $this->createQueryBuilder('m')
-    //     ->innerJoin('m.lieux', 'l')
-    //     ->getQuery()
-    //     ->getResult()
-    //     ;
-    // }
+    /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheAll($date, $mot_cle, $genre): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.date LIKE :date')
+            ->setParameter('date', $date)
+            ->andWhere('m.titre LIKE :mot_cle OR m.description LIKE :mot_cle OR m.casting LIKE :mot_cle')
+            ->setParameter('mot_cle', '%'.$mot_cle.'%')
+            ->andWhere('m.genre LIKE :genre')
+            ->setParameter('genre', '%'.$genre.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-    // public function rechercheDateFin()
-    // {
-    //     return $this->createQueryBuilder('m')
-    //     ->innerJoin('m.lieux', 'l')
-    //     ->getQuery()
-    //     ->getResult()
-    //     ;
-    // }
+        /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheDateMot($date, $mot_cle): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.date LIKE :date')
+            ->setParameter('date', $date)
+            ->andWhere('m.titre LIKE :mot_cle OR m.description LIKE :mot_cle OR m.casting LIKE :mot_cle')
+            ->setParameter('mot_cle', '%'.$mot_cle.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+        /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheDateGenre($date, $genre): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.date LIKE :date')
+            ->setParameter('date', $date)
+            ->andWhere('m.genre LIKE :genre')
+            ->setParameter('genre', '%'.$genre.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+        /**
+     * @return Manifestations[] Returns an array of Manifestations objects
+     */
+    public function rechercheMotGenre($mot_cle, $genre): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m')
+            ->andWhere('m.titre LIKE :mot_cle OR m.description LIKE :mot_cle OR m.casting LIKE :mot_cle')
+            ->setParameter('mot_cle', '%'.$mot_cle.'%')
+            ->andWhere('m.genre LIKE :genre')
+            ->setParameter('genre', '%'.$genre.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Manifestations[] Returns an array of Manifestations objects
 //     */

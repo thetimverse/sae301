@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
 
 class PanierController extends AbstractController
 {
@@ -40,7 +43,7 @@ class PanierController extends AbstractController
         ]);
     }
     #[Route('/panier/achat', name: 'panier_achat')]
-    public function panierAchat(HttpFoundationRequest $request, EntityManagerInterface $entityManagerInterface): Response
+    public function panierAchat(HttpFoundationRequest $request, EntityManagerInterface $entityManagerInterface, MailerInterface $mailer): Response
     {
         $user = $this->getUser();
         if ($user==null) {
@@ -56,7 +59,7 @@ class PanierController extends AbstractController
         $commande -> setUser($user)
         -> setManifestations($panier)
         -> setTotal($total)
-        -> setDate(new DateTime('now'))
+        -> setDate(new DateTime('now', new DateTimeZone('Europe/Paris')))
         -> setNom($recupDonnee['nom'])
         -> setPrenom($recupDonnee['prenom'])
         -> setAdresse($recupDonnee['adresse'])
@@ -66,9 +69,17 @@ class PanierController extends AbstractController
         $entityManagerInterface->persist($commande);
         $entityManagerInterface->flush();
 
+        $email = (new Email())
+            ->from('toulouseculture@mmi21f13et15.fr')
+            ->to($user->getEmail())
+            ->bcc('julie.van-houdenhove@etudiant.univ-reims.fr')
+            ->subject('Confirmation de commande')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
         $this -> addFlash("success", "Commande réussie !");
-        $response = new Response();
-        $response->headers->clearCookie('panier', '/', null);
+
         return $this->redirectToRoute('app_accueil');
     }
 }

@@ -36,29 +36,34 @@ class ManifestationsController extends AbstractController
         $manifs = [];
 
             $mot_cle = $request->request->get('mot_cle');
-            dump($mot_cle);
             $genre = $request->request->get('genre');
-            $date_debut= $request->request->get('date_debut');
-            $date_fin= $request->request->get('date_fin');
-
-
-            if ($mot_cle != null){
-                $manifs = array_merge($manifs, $manifestationsRepository->rechercheMotCle($mot_cle));
-            }
-            if ($genre != null){
-                $manifs = array_merge($manifs, $manifestationsRepository->rechercheGenre($genre));
-            }
-
-            if ($date_debut != null){
-                $manifs = array_merge($manifs, $manifestationsRepository->rechercheDate($date_debut));
-            }
-
-            if ($date_fin != null){
-                
-            }
-
-            if ($mot_cle == null && $genre == null && $date_debut == null && $date_fin == null) {
-                $manifs = $manifestationsRepository->findAll();
+            $date= $request->request->get('date_debut');
+            
+            switch (true) {
+                case ($mot_cle != null && $date != null && $genre != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheAll($date, $mot_cle, $genre));
+                    break;
+                case ($mot_cle != null && $genre != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheMotGenre($mot_cle, $genre));
+                    break;
+                case ($genre != null && $date != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheDateGenre($date, $genre));
+                    break;
+                case ($mot_cle != null && $date != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheDateMot($date, $mot_cle));
+                    break;
+                case ($mot_cle != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheMotCle($mot_cle));
+                    break;
+                case ($genre != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheGenre($genre));
+                    break;
+                case ($date != null):
+                    $manifs = array_merge($manifs, $manifestationsRepository->rechercheDate($date));
+                    break;
+                case ($mot_cle == null && $genre == null && $date == null ):
+                    $manifs = $manifestationsRepository->findAll();
+                    break;
             }
 
             $manifs = array_unique($manifs, SORT_REGULAR);
