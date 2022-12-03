@@ -81,4 +81,40 @@ function showSearch() {
     }
 }
 
-document.getElementById("search-icon").addEventListener("click", showSearch);
+if(document.getElementById("search-icon")) {
+  document.getElementById("search-icon").addEventListener("click", showSearch);
+}
+
+
+// OPEN/CLOSE CB
+function showCB() {
+  var cbOpen = document.getElementById("cb-open");
+        cbOpen.style.display = chkCard.checked ? "flex" : "none";
+}
+
+
+// BANNER COOKIE 
+var closeCookie = document.getElementById("cookie-close");
+var bannerCookie = document.getElementById("cookie-banner");
+
+if(closeCookie) {
+  closeCookie.addEventListener("click", function() {
+    bannerCookie.style.display = 'none';
+  })
+}
+
+
+// ALERT
+var closeAlert = document.getElementById("alert-close");
+var alertMessage = document.getElementById("alert_message");
+var overlay = document.getElementById("overlay");
+
+if(alertMessage){
+    overlay.style.display = 'block';
+    
+    closeAlert.addEventListener("click", function() {
+    alertMessage.style.display = 'none';
+    overlay.style.display = "none";
+  })
+}
+

@@ -3,9 +3,9 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <section id="main">
+    <section id="main-form">
 
-        <h1>S'inscrire</h1>
+        <h1>Créez votre compte</h1>
 
         {{ form_start(registrationForm) }}
             {{ form_row(registrationForm.email, {
@@ -15,10 +15,20 @@
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Mot de passe'
             }) }}
+            <div>
             {{ form_row(registrationForm.agreeTerms) }}
+            </div>
 
-            <button type="submit" class="btn">S'inscrire</button>
+            <button type="submit" class="bttn-primary">Inscription</button>
+
         {{ form_end(registrationForm) }}
+
+            <hr>
+
+            <h3>Vous êtes déjà inscrit ? Connectez-vous.</h3>
+
+            <a href="{{ path('app_login')}}" class="bttn-secondary">Connexion</a>
+
     </section>
     <script src="{{ asset('js/general.js') }}"></script>
 {% endblock %}

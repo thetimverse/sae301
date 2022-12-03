@@ -22,10 +22,17 @@
         </div>
         
         <div id="bttn">
-            <a href="{{ path('app_accueil')}}" class="bttn-secondary" onclick="viderPanier()">Annuler</a>
+            <a href="{{ path('app_accueil')}}" class="bttn-secondary" onclick="viderPanier()">Vider le panier</a>
             <input type="hidden" name="liste" id="liste">
             <a href="{{ path('panier_validation')}}" class="bttn-primary">Effectuer la commande</a>
         </div>
+
+        <a id="back" href="{{ path('app_manifestations')}}">
+            <div>
+            <i class="material-symbols-rounded">arrow_circle_left</i>
+            <h4>Retour au catalogue</h4>
+            </div>
+        </a>
     </section>
     <script src="{{ asset('js/panier.js') }}"></script>
 {% endblock %}

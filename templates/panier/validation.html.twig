@@ -3,10 +3,9 @@
 {% block title %}Panier - SAÉ301{% endblock %}
 
 {% block body %}
-<section id="main">
-    <h1>Validation panier</h1>
-    <h2>Votre panier</h2>
-    <div>
+<section id="main-valid">
+    <h1>Votre panier</h1>
+    <div id="cart">
         <table>
             <thead>
                 <th><h3>Évènement(s)</h3></th>
@@ -21,36 +20,80 @@
                     <td><div><h4>{{article.quantite}}</h4></div></td>
                     <td><h4><span class="unitaire">{{article.prix}} €</span></h4></td>
                     <td><h4><span class="prix">{{(article.prix * article.quantite)|round(2)}}</span><span> €</span></h4></td>
+                    <td><h4><a href="cart.php">Modifier votre panier</a></h4></td>
                 </tr>
         {% endfor %}
             </tbody>
         </table>
         <h2><span>Total : </span><span id="total">{{total}}</span> €</h2>
     </div>
-    <h2>Adresse de livraison</h2>
-    <form action="{{path ("panier_achat")}}" method="post">
-        <label for="nom">Nom</label>
-        <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
-        <label for="prenom">Prénom</label>
-        <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required>
-        <label for="adresse">Adresse</label>
-        <input type="text" name="adresse" id="adresse" placeholder="Votre adresse" required>
-        <label for="ville">Ville</label>
-        <input type="text" name="ville" id="ville" placeholder="Votre ville" required>
-        <label for="cp">Nom</label>
-        <input type="text" name="cp" id="cp" placeholder="Votre code postal" required>
 
-        <h2>Moyen de paiement</h2>
-            <label for="paypal">Paypal</label>
-            <input type="checkbox" name="paypal" id="paypal">
-            <label for="cb">Carte bancaire</label>
-            <input type="checkbox" name="cb" id="cb">
-            <label for="cheque">Chèque</label>
-            <input type="checkbox" name="cheque" id="cheque">
-            <label for="virement">Virement</label>
-            <input type="checkbox" name="virement" id="virement">
-        <input type="submit" value"Valider la commande">
-    </form>
+    <h1>Adresse de livraison</h1>
+    <form action="{{path ("panier_achat")}}" method="post">
+        <div class="form-div">
+            <div>
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
+            </div>
+            <div>
+                <label for="prenom">Prénom</label>
+                <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required>
+            </div>
+        </div>
+        <div class="form-div">
+            <div>
+                <label for="adresse">Adresse</label>
+                <input type="text" name="adresse" id="adresse" placeholder="Votre adresse" required>
+            </div>
+            <div>
+                <label for="ville">Ville</label>
+                <input type="text" name="ville" id="ville" placeholder="Votre ville" required>
+            </div>
+            <div>
+                <label for="cp">Code postal</label>
+                <input type="text" name="cp" id="cp" placeholder="Votre code postal" required>
+            </div>
+        </div>
+
+        <h1>Moyen de paiement</h1>
+        <div id="div-moyens">
+            <div class="moyens">
+                <input type="checkbox" name="paypal" id="paypal">
+                <i class="fa-brands fa-paypal"></i>
+                <label for="paypal">Paypal</label>
+            </div>
+            <div id="cb-closed" class="moyens">
+                <input type="checkbox" name="cb" id="chkCard" onclick="showCB()">
+                <i class="fa-solid fa-credit-card"></i>
+                <label for="cb">Carte bancaire</label>
+                <div id="cb-open">
+                    <label for="titulaire">Nom du titulaire</label>
+                    <input type="text" name="titulaire" id="titulaire">
+                    <div>
+                        <div>
+                        <label for="num">Numéro de la carte</label>
+                        <input type="text" name="num" id="num">
+                        </div>
+                        <div>
+                        <label for="crypto">Crytogramme</label>
+                        <input type="text" name="crypto" id="crypto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="moyens">
+                <input type="checkbox" name="cheque" id="cheque">
+                <i class="fa-solid fa-money-check-dollar"></i>
+                <label for="cheque">Chèque</label>
+            </div>
+            <div class="moyens">
+                <input type="checkbox" name="virement" id="virement">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <label for="virement">Virement</label>
+            </div>
+        </div>
+            <input type="submit" class="bttn-primary" value="Valider la commande">
+        </form>
 </section>
     <script src="{{ asset('js/general.js') }}"></script>
 {% endblock %}

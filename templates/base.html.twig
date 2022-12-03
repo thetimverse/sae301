@@ -23,9 +23,18 @@
     {% include "menu.html.twig" %}
         {% for message in app.flashes('success') %}
             <div id="alert_message" class="alert alert-success">
-            {{message}}
+                <i class="material-symbols-rounded filled" id="alert-close">close</i>
+                <h1>Votre commande est validée.</h1>
+                <h2>Merci et à bientôt !</h2>
             </div> 
         {% endfor %}
+        <div id="cookie-banner">
+            <div>
+                <i class="material-symbols-rounded">cookie</i>
+                <h4>Ce site utilise des cookies.</h4>
+            </div>
+            <i class="material-symbols-rounded filled" id="cookie-close">cancel</i>
+        </div>
         {% block body %}
 
         {% endblock %}

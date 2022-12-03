@@ -3,7 +3,9 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <section id="main">
+    <section id="main-form">
+        <h1>Connectez-vous</h1>
+
 
         <form method="post">
             {% if error %}
@@ -12,14 +14,13 @@
 
             {% if app.user %}
                 <div class="mb-3">
-                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    <h3>Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a></h3>
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
-            <label for="inputEmail">E-mail</label>
+            <label for="inputEmail"><h2>E-mail</h2></label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            <label for="inputPassword">Mot de passe</label>
+            <label for="inputPassword"><h2>Mot de passe</h2></label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
             <input type="hidden" name="_csrf_token"
@@ -37,10 +38,15 @@
                 </div>
             #}
 
-            <button class="btn btn-lg btn-primary" type="submit">
-                Se connecter
-            </button>
+            <button type="submit" class="bttn-primary">Connexion</button>
         </form>
+
+            <hr>
+
+            <h3>Vous n'êtes pas encore inscrit ? Inscrivez-vous.</h3>
+
+            <a href="{{ path('app_register')}}" class="bttn-secondary">Inscription</a>
+
     </section>
     <script src="{{ asset('js/general.js') }}"></script>
 {% endblock %}
