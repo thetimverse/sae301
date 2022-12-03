@@ -16,18 +16,14 @@
 
             <div id="div-date">
                 <div>
-                    <label for="date-debut">Du</label>
+                    <label for="date-debut">Recherche par date</label>
                     <input type="date" name="date_debut" id="date_debut" value="01/01/2022"></input>
-                </div>
-                <div>
-                    <label for="date-fin">Au</label>
-                    <input type="date" name="date_fin" id="date_fin" value="01/01/2022"></input>
                 </div>
             </div>
             
-            <label for="genre">Type d'évènements</label>
+            <label for="genre">Recherche par type d'évènements</label>
             <div class="select-wrapper" style="width:300px;">
-                <select id="genre" name="genre" placeholder="Type d'évènements" size="1">
+                <select id="genre" name="genre" size="1">
                     <option value="">Choisir une option</option>
                     <option value="conference">Conférence</option>
                     <option value="exposition">Exposition</option>
@@ -39,7 +35,7 @@
             <input type="submit" value="Rechercher" id="submit-recherche" class="bttn-primary" onclick="function_valider_recherche()">
         </div>
     </section>
-    <section id="main">
+    <section id="main" class="main-listing">
         <h1>Évènements</h1>
         <div id="events">
             {% include 'manifestations/render_manif.html.twig' %}

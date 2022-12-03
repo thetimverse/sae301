@@ -4,10 +4,10 @@
 {% block meta_description %}Sur votre compte vous retrouvez l'ensemble de vos commandes. Vous pouvez également télécharger la facture associée en PDF.{% endblock %}
 
 {% block body %}
-<section id="main">
+<section id="main" class="cart-acc">
     <h1>Profil</h1>
-    <h3>Vos commandes</h3>
-    <div id="cart">
+    <h2>Vos commandes</h2>
+    <div id="cart" class="cart-compte">
         <table>
             <thead>
                 <th><h3>Date</h3></th>
@@ -18,13 +18,18 @@
             <tbody id="zone">
                 {% for commande in commandes %}
                     <tr>
-                        <td>{{ commande.date | date ('d M Y H:i') }}</td>
+                        <td><h4>{{ commande.date | date ('d M Y H:i') }}</h4></td>
                         <td>{% for manif in commande.manifestations %}
-                            {{ manif.titre }} {{ manif.date }} {{ manif.horaire }}<br>
+                            <div>
+                                <h3>{{ manif.titre }} </h3>
+                                <h3>x {{ manif.quantite }}</h3>
+                            </div>
+                            <h4>{{ manif.date }} - {{ manif.horaire }}</h4>
+                            <br>
                             {% endfor %}
                         </td>
-                        <td>{{ commande.total }}</td>
-                        <td><button>Télécharger le PDF</button></td>
+                        <td><h4>{{ commande.total }}</h4></td>
+                        <td><button class="bttn-secondary">Télécharger le PDF</button></td>
                     </tr>
                 {% endfor %}
             </tbody>
