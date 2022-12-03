@@ -7,7 +7,8 @@ use PHPUnit\TextUI\Command;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Mpdf\Mpdf;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class CompteController extends AbstractController
 {
@@ -26,24 +27,33 @@ class CompteController extends AbstractController
     }
 
     #[Route('/compte/pdf/{commande}', name: 'pdf')]
-    public function pdf(Commande $commande): Response
+    public function pdf(Commande $commande)
     {
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->useSubstitutions = false;
-        $mpdf->simpleTables = true;
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Roboto');
 
-        $mpdf->SetFooter('Toulouse Culture');
-        $mpdf->WriteHTML($html);
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
 
-        $mpdf->SetTitle('Ticket commande'.$commande->getId());
-        $mpdf->SetAuthor('TC');
-        $mpdf->SetCreator('TC');
-        $mpdf->SetSubject('Validation de commande');
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('compte/pdf.html.twig', [
+            'title' => "Welcome to our PDF Test",
+            'commande' => $commande
+        ]);
 
-        $mpdf->Output('Ticket commande'.$commande->getId());
-        return new JsonResponse([
-            'success' => true,
-            'data'    => []
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("facture.pdf", [
+            "Attachment" => false
         ]);
     }
 }

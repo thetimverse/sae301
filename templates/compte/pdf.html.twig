@@ -1,25 +1,23 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Compte{% endblock %}
-{% block meta_description %}Sur votre compte vous retrouvez l'ensemble de vos commandes. Vous pouvez également télécharger la facture associée en PDF.{% endblock %}
-
-{% block body %}
-<section id="main" class="cart-acc">
-    <h1>Profil</h1>
-    <h2>Vos commandes</h2>
+<div style="background-image: url(../../public/img/logo.svg)"></div>
+    <h1>Facture</h1>
+    <h2>Adresse de facturation</h2>
+    <h3>{{ commande.nom }} {{ commande.prenom }}<br>
+    {{ commande.adresse }}<br>
+    {{ commande.cp }} {{ commande.ville }}</h3>
+    <h2>Contenu de votre commande</h2>
     <div id="cart" class="cart-compte">
-        <table>
+        <table style="">
             <thead>
                 <th><h3>Date</h3></th>
                 <th><h3>Détails</h3></th>
                 <th><h3>Prix</h3></th>
-                <th><h3>PDF</h3></th>
             </thead>
             <tbody id="zone">
-                {% for commande in commandes %}
                     <tr>
                         <td><h4>{{ commande.date | date ('d M Y H:i') }}</h4></td>
                         <td>{% for manif in commande.manifestations %}
+                            <img src="{{manif.image}}" alt="affiche {{ manif.titre }}">
                             <div>
                                 <h3>{{ manif.titre }} </h3>
                                 <h3>x {{ manif.quantite }}</h3>
@@ -29,13 +27,7 @@
                             {% endfor %}
                         </td>
                         <td><h4>{{ commande.total }}</h4></td>
-                        <td><a href="{{ path ('pdf', {'commande': commande.id}) }}" class="bttn-secondary">Télécharger le PDF</a></td>
                     </tr>
-                {% endfor %}
             </tbody>
         </table>
-
     </div>
-</section>
-    <script src="{{ asset('js/general.js') }}"></script>
-{% endblock %}
