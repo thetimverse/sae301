@@ -53,11 +53,25 @@ p {
     color: #3F3F3F;
 }
 
+p span {
+    font-weight: 600;
+}
+
 a {
     text-decoration: none;
     color: #181818;
     cursor: pointer;
     transition: all .3s ease;
+}
+
+p a {
+    text-decoration: underline;
+    color: #3F3F3F;
+}
+
+.h2-cgv {
+    font-style: italic;
+    font-size: 30px !important;
 }
 
 #cookie-banner {
