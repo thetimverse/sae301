@@ -6,12 +6,38 @@
 
         <style>
             body {
-                font-family: 'Roboto', sans-serif;
+                font-family: 'Roboto', sans-serif !important;
             }
+            table {
+                border: 2px solid #181818;
+                border-radius: 10px;
+                width: 100%;
+            }
+            thead {
+                text-align: left;
+                border-bottom: 2px solid #181818;
+            }
+            th:nth-child(2){
+                border-right: 2px solid #181818;
+                border-left: 2px solid #181818;
+            }
+            td {
+                padding: 10px;
+            }
+            td:nth-child(2){
+                border-right: 2px solid #181818;
+                border-left: 2px solid #181818;
+            }
+            .barre {
+                background-color: #DC3E6F;
+                width: 80%;
+                height: 10px;
+            }
+
         </style>
     </head>
     <body>
-        <div style="background-image: url(../../public/img/logo.svg)"></div>
+        <div class="barre"></div>
             <h1>Facture</h1>
             <h2>Adresse de facturation</h2>
             <h3>{{ commande.nom }} {{ commande.prenom }}<br>
@@ -41,6 +67,5 @@
                             </tr>
                     </tbody>
                 </table>
-
     </body>
 <html>
