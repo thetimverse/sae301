@@ -77,10 +77,10 @@ function clickplusmob(tag){
     qte= parseInt( this.parentNode.querySelector('span').innerHTML);
     qte++;
     this.parentNode.querySelector('span').innerHTML=qte;
-    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
+    prix=parseFloat(this.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
     total= prix*qte;
-    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
-    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    this.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
+    id = this.parentNode.parentNode.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
     montab[index].quantite	= parseInt(montab[index].quantite) +1; //incrementer la quantité
     document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
@@ -128,11 +128,11 @@ function clickmoinsmob(tag){
     if( qte>0){
     qte--
     this.parentNode.querySelector('span').innerHTML=qte;
-    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
+    prix=parseFloat(this.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
     total= prix*qte;
-    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
+    this.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
 
-    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    id = this.parentNode.parentNode.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
     index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
     montab[index].quantite	= parseInt(montab[index].quantite) -1; //incrementer la quantité
 
