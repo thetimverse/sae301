@@ -1155,7 +1155,7 @@ footer #right{
     h3 {
         font-size: 2rem;
     }
-    h4 {
+    h4, h4 span {
         font-size: 2rem;
     }
     p {
