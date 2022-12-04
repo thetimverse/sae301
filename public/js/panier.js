@@ -30,7 +30,7 @@ montab.forEach(manif => {
             <div>
                 <h3 class="th">Quantité</h3>
                 <div id="quantite">
-                    <div><i class="material-icons moins">remove_circle</i><h4>${manif.quantite}</h4><i class="material-icons plus">add_circle</i></div> 
+                    <div><i class="material-icons moins-mob">remove_circle</i><h4><span>${manif.quantite}</span></h4><i class="material-icons plus-mob">add_circle</i></div> 
                 </div>
             </div>
         </div>
@@ -70,9 +70,59 @@ function clickplus(tag){
     document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
 })}
 
+document.querySelectorAll('.plus-mob').forEach(clickplusmob)
+    
+function clickplusmob(tag){
+    tag.addEventListener('click',function() { 
+    qte= parseInt( this.parentNode.querySelector('span').innerHTML);
+    qte++;
+    this.parentNode.querySelector('span').innerHTML=qte;
+    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
+    total= prix*qte;
+    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
+    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
+    montab[index].quantite	= parseInt(montab[index].quantite) +1; //incrementer la quantité
+    document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
+
+    totalgeneral += parseFloat(prix)
+    document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
+})}
+
 document.querySelectorAll('.moins').forEach(clickmoins)
     
 function clickmoins(tag){
+    tag.addEventListener('click',function() { 
+    qte=parseInt(this.parentNode.querySelector('span').innerHTML);
+    if( qte>0){
+    qte--
+    this.parentNode.querySelector('span').innerHTML=qte;
+    prix=parseFloat(this.parentNode.parentNode.parentNode.querySelector('.unitaire').innerHTML);
+    total= prix*qte;
+    this.parentNode.parentNode.parentNode.querySelector('.prix').innerHTML=total.toFixed(2);
+
+    id = this.parentNode.parentNode.parentNode.id; // recupere l'id de l'article cliqué
+    index = montab.findIndex(element => element.id ==id); //trouver l'article dans la liste du panier
+    montab[index].quantite	= parseInt(montab[index].quantite) -1; //incrementer la quantité
+
+    if (montab[index].quantite==0 && montab[index]!=null) {
+        montab.splice(index, 1)
+        document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
+        return window.location.reload()
+    }
+    console.log(montab)
+    
+    document.cookie = "panier="+JSON.stringify(montab)+"; path=/"  // sauvegarde des infos dans le cookie "liste"
+
+    totalgeneral -= parseFloat(prix)
+    document.querySelector('#total').innerHTML=totalgeneral.toFixed(2)
+    }
+
+})}  
+
+document.querySelectorAll('.moins-mob').forEach(clickmoinsmob)
+    
+function clickmoinsmob(tag){
     tag.addEventListener('click',function() { 
     qte=parseInt(this.parentNode.querySelector('span').innerHTML);
     if( qte>0){
