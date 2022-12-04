@@ -55,5 +55,7 @@ class CompteController extends AbstractController
         $dompdf->stream("facture.pdf", [
             "Attachment" => false
         ]);
+
+        exit();
     }
 }
