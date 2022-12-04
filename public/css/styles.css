@@ -1251,6 +1251,10 @@ footer #right{
     .lieu-detail a {
         margin-top: 0;
     }
+    #titre {
+        padding: 0;
+        padding-bottom: 10px;
+    }
     #main-form form {
         width: auto;
     }
