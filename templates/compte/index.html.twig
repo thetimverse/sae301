@@ -35,6 +35,34 @@
             </tbody>
         </table>
 
+        <div id="panier-mobile">
+        {% for commande in commandes %}
+            <div id="thead">
+                <div>
+                    <h3 class="th">Date</h3>
+                    <div class="td"><h4>{{ commande.date | date ('d M Y H:i') }}</h4></div>
+                </div>
+                <div>{% for manif in commande.manifestations %}
+                    <h3 class="th">Détails</h3>
+                    <div class="td">
+                        <div>
+                            <h3 class="th">{{ manif.titre }} </h3>
+                            <h3>x {{ manif.quantite }}</h3>
+                        </div>
+                        <h4>{{ manif.date }} - {{ manif.horaire }}</h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div id="tbody">
+                <div>
+                    <div><h3 class="th">Prix</h3><h4>{{ commande.total }}</h4></div>
+                    <div><button class="bttn-secondary">Télécharger le PDF</button></div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
     </div>
 </section>
     <script src="{{ asset('js/general.js') }}"></script>

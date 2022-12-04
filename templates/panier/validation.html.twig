@@ -20,11 +20,37 @@
                     <td><div><h4>{{article.quantite}}</h4></div></td>
                     <td><h4><span class="unitaire">{{article.prix}} €</span></h4></td>
                     <td><h4><span class="prix">{{(article.prix * article.quantite)|round(2)}}</span><span> €</span></h4></td>
-                    <td><h4><a href="cart.php">Modifier votre panier</a></h4></td>
+                    <td><h4><a href="{{ path('app_panier')}}">Modifier votre panier</a></h4></td>
                 </tr>
         {% endfor %}
             </tbody>
         </table>
+
+        <div id="panier-mobile">
+            {% for article in panier %}
+            <div id="{{article.id}}">
+                <div id="thead">
+                    <div>
+                        <h3 class="th">Évènement</h3>
+                        <div class="td"><h3 class="th">{{article.titre}}</h3><br><h4>{{article.date}} - {{article.horaire}}</h4></div>
+                    </div>
+                    <div>
+                        <h3 class="th">Quantité</h3>
+                        <div id="quantite">
+                            <div><h4>{{article.quantite}}</h4></div> 
+                        </div>
+                    </div>
+                </div>
+                <div id="tbody">
+                    <div>
+                        <div><h3 class="th">Prix unitaire</h3><h4><span class="unitaire">{{article.prix}} €</span></h4></div>
+                        <div><h3 class="th">Prix total</h3><h4><span class="prix">{{(article.prix * article.quantite)|round(2)}}</span><span> €</span></h4></div>
+                        <div><h4><a href="{{ path('app_panier')}}">Modifier votre panier</a></h4></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
         <h2><span>Total : </span><span id="total">{{total}}</span> €</h2>
     </div>
 
