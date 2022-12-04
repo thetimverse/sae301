@@ -1074,6 +1074,10 @@ input.checkbox-condition {
     /* width: 30%; */
 } 
 
+.cart-compte td:nth-child(2) {
+    width: 40%;
+}
+
 
 /* FOOTER */
 
