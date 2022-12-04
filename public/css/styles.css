@@ -800,7 +800,7 @@ button {
 
 table, #panier-mobile {
     border: 2px solid #181818;
-    border-radius: 20px;
+    border-radius: 10px;
     width: 100%;
     padding: 30px;
     border-spacing: 10px;
@@ -1312,15 +1312,15 @@ footer #right{
         display: block;
         padding: 10px 0;
     }
-    #thead {
+    .thead {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
     }
-    #th {
+    .th {
         margin-bottom: 10px;
     }
-    #tbody div {
+    .tbody div {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -1328,7 +1328,7 @@ footer #right{
         justify-content: center;
         margin-top: 20px;
     }
-    #tbody div div {
+    .tbody div div {
         margin-top: 0;
     }
     #div-moyens {
@@ -1343,8 +1343,18 @@ footer #right{
     .form-div div {
         margin-top: 10px;
     }
-    .cart-compte #thead {
+    .cart-compte .thead {
         align-items: flex-start;
+        padding-top: 10px;
+    }
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px #181818 solid;
+    }
+    .cart-compte .tbody .th, .cart-compte .tbody h4 {
+        font-size: 39px;
     }
     footer {
         left: 0;
