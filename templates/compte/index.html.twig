@@ -28,7 +28,7 @@
                             <br>
                             {% endfor %}
                         </td>
-                        <td><h4>{{ commande.total }}</h4></td>
+                        <td><h4>{{ commande.total|round(2) }} €</h4></td>
                         <td><a href="{{ path ('pdf', {'commande': commande.id}) }}" class="bttn-secondary">Télécharger le PDF</a></td>
                     </tr>
                 {% endfor %}
