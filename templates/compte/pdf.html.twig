@@ -1,33 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-<div style="background-image: url(../../public/img/logo.svg)"></div>
-    <h1>Facture</h1>
-    <h2>Adresse de facturation</h2>
-    <h3>{{ commande.nom }} {{ commande.prenom }}<br>
-    {{ commande.adresse }}<br>
-    {{ commande.cp }} {{ commande.ville }}</h3>
-    <h2>Contenu de votre commande</h2>
-    <div id="cart" class="cart-compte">
-        <table style="">
-            <thead>
-                <th><h3>Date</h3></th>
-                <th><h3>Détails</h3></th>
-                <th><h3>Prix</h3></th>
-            </thead>
-            <tbody id="zone">
-                    <tr>
-                        <td><h4>{{ commande.date | date ('d M Y H:i') }}</h4></td>
-                        <td>{% for manif in commande.manifestations %}
-                            <img src="{{manif.image}}" alt="affiche {{ manif.titre }}">
-                            <div>
-                                <h3>{{ manif.titre }} </h3>
-                                <h3>x {{ manif.quantite }}</h3>
-                            </div>
-                            <h4>{{ manif.date }} - {{ manif.horaire }}</h4>
-                            <br>
-                            {% endfor %}
-                        </td>
-                        <td><h4>{{ commande.total }}</h4></td>
-                    </tr>
-            </tbody>
-        </table>
-    </div>
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="background-image: url(../../public/img/logo.svg)"></div>
+            <h1>Facture</h1>
+            <h2>Adresse de facturation</h2>
+            <h3>{{ commande.nom }} {{ commande.prenom }}<br>
+            {{ commande.adresse }}<br>
+            {{ commande.cp }} {{ commande.ville }}</h3>
+            <h2>Contenu de votre commande</h2>
+                <div id="cart">
+                <table>
+                    <thead>
+                        <th><h3>Date</h3></th>
+                        <th><h3>Détails</h3></th>
+                        <th><h3>Prix</h3></th>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td><h4>{{ commande.date | date ('d M Y H:i') }}</h4></td>
+                                <td>{% for manif in commande.manifestations %}
+                                    <div>
+                                        <h3>{{ manif.titre }} </h3>
+                                        <h3>x {{ manif.quantite }}</h3>
+                                    </div>
+                                    <h4>{{ manif.date }} - {{ manif.horaire }}</h4>
+                                    <br>
+                                    {% endfor %}
+                                </td>
+                                <td><h4>{{ commande.total }}</h4></td>
+                            </tr>
+                    </tbody>
+                </table>
+
+    </body>
+<html>
