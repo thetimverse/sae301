@@ -1341,7 +1341,7 @@ footer #right{
     }
     footer #left, footer #right {
         width: 100%;
-        padding: 10px 0 10px 150px;
+        padding: 25px 0 25px 150px;
     }
     #left div {
         flex-wrap: wrap;
@@ -1354,5 +1354,14 @@ footer #right{
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+    .material-symbols-rounded {
+        font-size: 2rem;
+    }
+    .material-icons {
+        font-size: 2.5rem !important;
+    }
+    .bttn-primary, .bttn-secondary {
+        font-size: 2rem;
     }
 }
