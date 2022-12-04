@@ -73,16 +73,19 @@ then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
 
 /* OPEN/CLOSE SEARCH */ 
+var searchOpen = document.getElementById("search-open");
+var searchIcon = document.getElementById("search-icon");
+
 function showSearch() {
-    if (document.getElementById("search-open").style.display === 'none') {
-            document.getElementById("search-open").style.display = 'flex';
-    } else {
-            document.getElementById("search-open").style.display = 'none';
-    }
+  if (searchOpen.style.display === 'none') {
+        searchOpen.style.display = 'flex';
+  } else {
+        searchOpen.style.display = 'none';
+  }
 }
 
-if(document.getElementById("search-icon")) {
-  document.getElementById("search-icon").addEventListener("click", showSearch);
+if(searchIcon) {
+  searchIcon.addEventListener("click", showSearch);
 }
 
 
@@ -117,4 +120,13 @@ if(alertMessage){
     overlay.style.display = "none";
   })
 }
+
+
+// MENU RESPONSIVE
+let toggle = document.querySelector('.nav__toggle');
+let body = document.querySelector('body');
+
+toggle.addEventListener('click', function() {
+    body.classList.toggle('open');
+})
 
