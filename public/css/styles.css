@@ -1164,6 +1164,9 @@ footer #right{
     .event h2, .lieu h2{
         font-size: 40px !important;
     }
+    .event h4, .lieu h4{
+        font-size: 20px !important;
+    }
     .open header {
         height: 100%;
         z-index: 30;
@@ -1366,5 +1369,8 @@ footer #right{
     }
     .bttn-primary, .bttn-secondary {
         font-size: 2rem;
+    }
+    .event .material-icons {
+        font-size: 30px !important;
     }
 }
