@@ -1146,6 +1146,21 @@ footer #right{
 
 /* MOBILE */
 @media all and (max-width: 991px) {
+    h1 {
+        font-size: 5rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+    h4 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
     .open header {
         height: 100%;
         z-index: 30;
@@ -1319,7 +1334,7 @@ footer #right{
     }
     footer #left h3, #left div {
         padding-left: 0;
-        font-size: 24px;
+        font-size: 2rem;
     }
     footer #left {
         gap: 20px;
