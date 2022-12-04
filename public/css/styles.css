@@ -1161,6 +1161,9 @@ footer #right{
     p {
         font-size: 1.5rem;
     }
+    .event h2, .lieu h2{
+        font-size: 40px !important;
+    }
     .open header {
         height: 100%;
         z-index: 30;
