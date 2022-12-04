@@ -6,6 +6,7 @@ console.log(montab)
 document.getElementById('liste').value="panier="+JSON.stringify(montab)+"; path=/" // sauver montab pour le formulaire
 
 var totalgeneral=0
+var largeur = window.innerWidth;
 
 montab.forEach(manif => {  
 
@@ -19,7 +20,32 @@ montab.forEach(manif => {
         <td><h4><span class="prix">${(manif.prix * manif.quantite).toFixed(2)}</span><span> €</span></h4></td>
         </tr>`;
 
-    document.getElementById('zone').innerHTML += html
+    mobile = `<div id="${manif.id}">
+        <div id="thead">
+            <div>
+                <h3 class="th">Évènement</h3>
+                <div class="td"><img src="${manif.image}" alt="event"></div>
+                <div class="td"><h3 class="th">${manif.titre}</h3><br><h4>${manif.date} - ${manif.horaire}</h4></div>
+            </div>
+            <div>
+                <h3 class="th">Quantité</h3>
+                <div id="quantite">
+                    <div><i class="material-icons moins">remove_circle</i><h4>${manif.quantite}</h4><i class="material-icons plus">add_circle</i></div> 
+                </div>
+            </div>
+        </div>
+        <div id="tbody">
+            <div>
+                <div><h3 class="th">Prix unitaire</h3><h4><span class="unitaire">${manif.prix} €</span></h4></div>
+                <div><h3 class="th">Prix total</h3><h4><span class="prix">${(manif.prix * manif.quantite).toFixed(2)}</span><span> €</span></h4></div>
+            </div>
+        </div></div>`;
+
+    if (largeur > 991) {
+        document.getElementById('zone').innerHTML += html
+    } else {
+        document.getElementById('panier-mobile').innerHTML += mobile
+    }
     totalgeneral += manif.prix * manif.quantite
 })
 
