@@ -1356,6 +1356,9 @@ footer #right{
     .cart-compte .tbody .th, .cart-compte .tbody h4 {
         font-size: 39px;
     }
+    #panier-mobile h4 {
+        text-align: center;
+    }
     footer {
         left: 0;
         right: 0;
