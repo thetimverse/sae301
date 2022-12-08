@@ -1359,6 +1359,12 @@ footer #right{
     #panier-mobile h4 {
         text-align: center;
     }
+    #footer-mobile {
+        position: fixed;
+        bottom: 0;
+        overflow: hidden;
+        width: 100%;
+    }
     footer {
         left: 0;
         right: 0;
